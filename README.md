@@ -105,5 +105,5 @@ git add namafile
 git commit
 ```
 
-📞 Kontak Lead
-Ridwan [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/ridwannnn_____) 
+### 📞 Kontak Lead Ridwan
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white)](https://instagram.com/ridwannnn_____) 
