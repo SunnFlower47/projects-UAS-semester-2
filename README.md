@@ -55,21 +55,40 @@ git push                      # Selanjutnya
 5. Klik **Create pull request** untuk mengirim PR.  
 
 ## ⚙️ Setup Laravel
-### 1. Install Dependencies
-```bash
 
-composer install
-```
-### 2. Setup Environment
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-3. Database Migration
-```bash
-php artisan migrate
-```
-### 4. Jalankan Server
+### 1. Clone repository:
+    ```bash
+    git clone https://github.com/SunnFlower47/projects-UAS-sester-2.git
+    cd <folder-project>
+    ```
+
+### 2. Install dependencies backend (PHP):
+    ```bash
+    composer install
+    ```
+
+### 3. Install dependencies frontend (JS/CSS):
+    ```bash
+    npm install
+    ```
+
+### 4. Setup environment:
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+### 5. Jalankan migrasi database:
+    ```bash
+    php artisan migrate
+    ```
+
+### 6. Compile asset frontend:
+    ```bash
+    npm run dev
+    ```
+
+### 7. Jalankan Server
 
 Jika kamu menggunakan **Laravel Herd**, server Laravel akan otomatis berjalan di:
 http://localhost
@@ -85,6 +104,8 @@ php artisan serve
 ❌ Jangan commit langsung ke main
 
 🔄 Selalu update branch dari main sebelum kerja
+
+📑 kerjakan sesuai job desk masing-masing, jangan asal edit file yang ukan job desk kamu
 
 ✍️ Commit message harus jelas
 
