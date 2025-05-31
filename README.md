@@ -100,7 +100,7 @@ git push                      # Selanjutnya
 
 🔄 Selalu ambil update branch dari main sebelum kerja
 
-📑 kerjakan sesuai job desk masing-masing, jangan asal edit file yang ukan job desk kamu
+📑 kerjakan sesuai job desk masing-masing, jangan asal edit file yang bukan job desk kamu
 
 ✍️ Commit message harus jelas
 
