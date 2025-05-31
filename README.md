@@ -1,7 +1,7 @@
-# Proyek UAS Laravel - Tim Ridwan, Sani, Bela
+# Project UAS Laravel - kelompok Ridwan, Sani, Bela
 
 ## 🌻 Anggota Tim
-- Ridwan (Lead)
+- Ridwan Andrian(Tim Lead)
 - Sani  
 - Bela  
 
