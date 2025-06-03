@@ -2,8 +2,8 @@
 
 ## 🌻 Anggota Tim
 - Ridwan Andrian(Tim Lead)
-- Sani  
-- Bela  
+- Savrida Yahrosani
+- Laisa Bela Safitri
 
 ## 🌿 Struktur Branch
 
