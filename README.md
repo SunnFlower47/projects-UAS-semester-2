@@ -4,6 +4,7 @@
 - Ridwan Andrian(Tim Lead)
 - Savrida Yahrosani
 - Laisa Bela Safitri
+- Purwa putra
 
 ## 🌿 Struktur Branch
 
@@ -13,6 +14,7 @@
 | ridwan  | Branch kerja Ridwan       |
 | sani    | Branch kerja Sani         |
 | bela    | Branch kerja Bela         |
+| purwa   | Brach Kerja Purwa         |
 
 ## ⚙️ Setup Laravel
 
@@ -47,8 +49,11 @@ php artisan migrate
 ```bash
 npm run dev
 ```
-
-### 7. Jalankan Server
+## 7. install filament:
+```bash
+composer require filament/filament
+```
+### 8. Jalankan Server
 
 Jika kamu menggunakan **Laravel Herd**, server Laravel akan otomatis berjalan di:
 http://localhost
