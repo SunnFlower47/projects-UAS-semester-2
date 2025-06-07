@@ -20,7 +20,7 @@ class RoleMiddleware
     public function handle(Request $request, Closure $next, string $role): Response
 {
     if (!Auth::check()) {
-        return redirect()->route('login'); // pastikan user login dulu
+        return redirect()->route('login');
     }
 
     $roles = explode('|', $role);
