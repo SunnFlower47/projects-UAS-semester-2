@@ -49,7 +49,7 @@ php artisan migrate
 ```bash
 npm run dev
 ```
-## 7. install filament:
+### 7. install filament:
 ```bash
 composer require filament/filament
 ```
