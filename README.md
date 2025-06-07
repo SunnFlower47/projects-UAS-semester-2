@@ -47,6 +47,7 @@ php artisan migrate
 
 ### 6. Compile asset frontend:
 ```bash
+npm run build
 npm run dev
 ```
 ### 7. install filament:
