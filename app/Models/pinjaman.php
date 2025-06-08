@@ -4,33 +4,47 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Models\Book;
 
 class Pinjaman extends Model
 {
     use HasFactory;
+    protected static function booted()
+    {
+        static::creating(function ($pinjaman) {
+            if (empty($pinjaman->user_id)) {
+                $pinjaman->user_id = Auth::id();
+            }
+        });
+    }
+// public function book()
+// {
+//     return $this->belongsTo(Book::class);
+// }
 
     protected $table = 'pinjaman';
 
     protected $fillable = [
-        'pengguna_id',
-        'Book_id',
-        'tanggal_pinjam',
-        'tanggal_kembali',
-        'tanggal_kembali_asli',
-        'status',
-    ];
+    'user_id',
+    'book_id',
+    'tanggal_pinjam',
+    'tanggal_kembali',
+    'status',
+];
+
 
     // Relasi ke User
     public function user()
-    {
-        return $this->belongsTo(User::class, 'pengguna_id');
-    }
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
 
-    // Relasi ke Book
-    public function Book()
-    {
-        return $this->belongsTo(Book::class, 'Book_id');
-    }
+public function book()
+{
+    return $this->belongsTo(Book::class, 'book_id');
+}
 
     // Relasi ke Denda
     public function denda()
