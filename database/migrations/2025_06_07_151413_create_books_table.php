@@ -18,6 +18,8 @@ return new class extends Migration
         $table->string('penerbit');
         $table->integer('tahun');
         $table->integer('stok');
+        $table->string('cover')->nullable();
+        $table->text('deskripsi')->nullable();
         $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
         $table->timestamps();
     });
