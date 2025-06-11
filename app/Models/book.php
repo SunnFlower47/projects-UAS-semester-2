@@ -19,6 +19,13 @@ class Book extends Model
         'tahun',
         'stok',
         'kategori_id',
+        'isbn',
+        'jumlah_halaman',
+        'lokasi_rak',
+        'bahasa',
+        'cover',
+        'deskripsi'
+
     ];
 
     // Relasi ke kategori

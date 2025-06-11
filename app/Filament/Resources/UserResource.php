@@ -3,13 +3,13 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
-use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\imageColumn;
+use Illuminate\Database\Eloquent\Model;
 
 class UserResource extends Resource
 {
@@ -17,32 +17,32 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([
-                //
-            ]);
-    }
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                //
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
+public static function table(Table $table): Table
+{
+    return $table
+        ->columns([
+
+
+            TextColumn::make('name')
+                ->searchable()
+                ->sortable(),
+
+            TextColumn::make('email')
+                ->searchable(),
+
+            TextColumn::make('role'),
+
+            ImageColumn::make('photo')
+                ->label('Foto')
+                ->circular()
+                ->height(40),
+        ])
+        ->actions([
+            Tables\Actions\EditAction::make(),
+            Tables\Actions\DeleteAction::make(),
+        ]);
+}
 
     public static function getRelations(): array
     {
@@ -58,5 +58,19 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
+    }
+    public static function canCreate(): bool
+    {
+        return \Illuminate\Support\Facades\Auth::user()?->role === 'admin';
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return \Illuminate\Support\Facades\Auth::user()?->role === 'admin';
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return \Illuminate\Support\Facades\Auth::user()?->role === 'admin';
     }
 }

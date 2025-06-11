@@ -9,6 +9,7 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
+
     theme: {
         extend: {
             fontFamily: {
@@ -18,4 +19,9 @@ export default {
     },
 
     plugins: [forms],
+    // plugins: [
+    // require('@tailwindcss/forms'),
+    // require('tailwind-scrollbar'),
+    // ],
+
 };

@@ -1,0 +1,110 @@
+body {
+    font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+/* Pembungkus Konten Utama */
+.content-wrapper {
+    max-width: 7xl;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+@media (min-width: 640px) { .content-wrapper { padding: 0 1.5rem; } }
+@media (min-width: 1024px) { .content-wrapper { padding: 0 2rem; } }
+
+
+
+.item-section {
+    margin-bottom: 50px;
+}
+
+/* Header Bagian (Judul dan Link "Selengkapnya") */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.section-header .see-more {
+    font-size: 16px;
+    color: #22d3ee;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.section-header .see-more:hover {
+    color: #ffffff;
+}
+
+/* Daftar Kartu */
+.item-list {
+    display: flex;
+    gap: 22px; /* Jarak bisa sedikit dikurangi juga */
+    overflow-x: auto;
+    padding: 10px 4px;
+}
+
+.item-card {
+    flex: 0 0 160px;
+    background-color: #1f2937;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item-card:hover {
+    transform: translateY(-8px);
+    border-color: #22d3ee;
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+}
+
+/* Link di dalam kartu */
+.item-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.item-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Info di bawah gambar */
+.item-info {
+    padding: 12px;
+}
+
+.item-title {
+    font-size: 15px;
+    color: #ffffff;
+    margin: 0 0 4px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-subtitle {
+    font-size: 13px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Kustomisasi Scrollbar */
+.item-list::-webkit-scrollbar { height: 8px; }
+.item-list::-webkit-scrollbar-track { background: #1f2937; border-radius: 4px; }
+.item-list::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 4px; }
+.item-list::-webkit-scrollbar-thumb:hover { background: #6b7280; }

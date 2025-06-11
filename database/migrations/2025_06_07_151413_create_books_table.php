@@ -16,12 +16,17 @@ return new class extends Migration
         $table->string('judul');
         $table->string('pengarang');
         $table->string('penerbit');
+        $table->string('isbn')->unique()->nullable();
         $table->integer('tahun');
+        $table->integer('jumlah_halaman')->nullable();
+        $table->string('lokasi_rak')->nullable();
+        $table->string('bahasa')->default('indonesia');
         $table->integer('stok');
         $table->string('cover')->nullable();
         $table->text('deskripsi')->nullable();
         $table->foreignId('kategori_id')->constrained('kategori')->onDelete('cascade');
         $table->timestamps();
+        $table->softDeletes();
     });
 }
 
