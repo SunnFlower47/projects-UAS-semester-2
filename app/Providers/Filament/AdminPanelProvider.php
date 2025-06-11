@@ -27,6 +27,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('SunLibrary Admin Panel')
+            ->topNavigation(true)
+            ->renderHook('panels::footer', fn () => view('filament.resources.admin-resource.components.footer'))
             ->colors([
                 'primary' => Color::Amber,
             ])

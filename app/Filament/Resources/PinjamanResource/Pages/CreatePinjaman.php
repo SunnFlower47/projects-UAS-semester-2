@@ -8,6 +8,7 @@ use Filament\Forms\Form;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Book;
 
 class CreatePinjaman extends CreateRecord
 {
@@ -15,8 +16,12 @@ class CreatePinjaman extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        // Set user_id sesuai user yang login
         $data['user_id'] = Auth::id();
+
+        $book = Book::find($data['book_id']);
+        if ($book && $book->stok > 0) {
+            $book->decrement('stok');
+        }
 
         return $data;
     }
