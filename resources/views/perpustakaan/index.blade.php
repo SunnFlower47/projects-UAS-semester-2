@@ -12,6 +12,12 @@
     .hide-scrollbar::-webkit-scrollbar {
         display: none; /* Chrome, Safari, Opera */
     }
+    .scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch; /* Untuk smooth scroll di mobile */
+}
     .mobile-menu {
             background: rgba(20, 20, 30, 0.98);
             backdrop-filter: blur(15px);
@@ -156,21 +162,21 @@
     </div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-12">
 
-    {{-- Section Rekomendasi --}}
+    <!-- Section Rekomendasi -->
     <section class="relative">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-white">Rekomendasi</h2>
         </div>
         <div class="relative group">
             <!-- Mobile Arrows -->
-            <button onclick="scrollLeft('rekomendasi-scroll')" aria-label="Scroll left" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+           <button onclick="scrollHorizontally('rekomendasi-scroll', -300)" aria-label="Scroll left" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
 
             <!-- Desktop Arrow -->
-            <button onclick="scrollLeft('rekomendasi-scroll')" aria-label="Scroll left" class="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
+            <button onclick="scrollHorizontally('rekomendasi-scroll', -300)" aria-label="Scroll left" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -188,8 +194,7 @@
 @endforeach
 
             </div>
-
-            <button onclick="scrollRight('rekomendasi-scroll')" aria-label="Scroll right" class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+           <button onclick="scrollRight('rekomendasi-scroll')" aria-label="Scroll right" class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
@@ -203,21 +208,21 @@
         </div>
     </section>
 
-    {{-- Section Buku Populer --}}
+    <!-- Section Buku Populer -->
     <section class="relative">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-white">Buku Populer</h2>
         </div>
         <div class="relative group">
             <!-- Mobile Arrows -->
-            <button onclick="scrollLeft('populer-scroll')" aria-label="Scroll left" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+            <button onclick="scrollHorizontally('populer-scroll', -300)" aria-label="Scroll left" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
 
             <!-- Desktop Arrow -->
-            <button onclick="scrollLeft('populer-scroll')" aria-label="Scroll left" class="hidden md:block absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
+            <button onclick="scrollHorizontally('populer-scroll', -300)" aria-label="Scroll left" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -225,13 +230,13 @@
 
             <div class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar" id="populer-scroll">
                 @foreach ($populer as $buku)
-                    <div class="flex-shrink-0 w-40 md:w-48 snap-start bg-gray-800 rounded-lg border-2 border-transparent hover:border-cyan-400 hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out">
+                <a href="{{ route('perpustakaan.books.show', $buku->id) }}" class="flex-shrink-0 w-40 md:w-48 snap-start bg-gray-800 rounded-lg border-2 border-transparent hover:border-cyan-400 hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out block">
                         <img src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}" alt="{{ $buku->judul }}" class="w-full h-56 md:h-64 object-cover rounded-t-lg">
                         <div class="p-3">
                             <p class="text-white font-semibold text-sm md:text-base truncate">{{ $buku->judul }}</p>
                             <p class="text-gray-400 text-xs md:text-sm truncate">{{ $buku->kategori->nama ?? '-' }}</p>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
 
@@ -249,27 +254,27 @@
         </div>
     </section>
 
-    {{-- Section Buku Baru Rilis --}}
+    <!-- Section Buku Baru Rilis -->
     <section class="relative">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-white">Buku Baru Rilis</h2>
         </div>
         <div class="relative group">
             <!-- Mobile Arrows -->
-            <button onclick="scrollLeft('baru-scroll')" aria-label="Scroll left"
-    class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+    <button onclick="scrollHorizontally('baru-scroll', -300)" aria-label="Scroll left"
+        class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
             </button>
 
-            <!-- Desktop Arrow -->
-            <button onclick="scrollLeft('baru-scroll')" aria-label="Scroll left"
-    class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
+    <!-- Desktop Arrow -->
+    <button onclick="scrollHorizontally('baru-scroll', -300)" aria-label="Scroll left"
+        class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
 
             <div class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar" id="baru-scroll">
                 @foreach ($baru as $buku)
@@ -298,57 +303,69 @@
     </section>
 
 </div>
-@endsection
+
 @push('scripts')
 <script>
-    function scrollLeft(containerId) {
-    const container = document.getElementById(containerId);
-    if (!container) {
-        alert(`Container with ID "${containerId}" not found.`);
-        return;
+    function scrollHorizontally(elementId, distance) {
+    const element = document.getElementById(elementId);
+    if (element) {
+        element.scrollLeft += distance;
     }
-    alert(`Scrolling left for container: ${containerId}`);
-    container.scrollBy({
-        left: -300,
-        behavior: 'smooth'
-    });
-}
-
+    }
     function scrollRight(containerId) {
         const container = document.getElementById(containerId);
         if (!container) {
             console.error(`Container with ID "${containerId}" not found.`);
             return;
         }
-        console.log(`Scrolling right for container: ${containerId}`);
+
         container.scrollBy({
             left: 300,
             behavior: 'smooth'
         });
     }
 
+
     function updateArrowVisibility() {
         document.querySelectorAll('[class*="overflow-x-auto"]').forEach(container => {
             const containerId = container.id;
-            const leftBtn = document.querySelector(`[onclick="scrollLeft('${containerId}')"]`);
-            const rightBtn = document.querySelector(`[onclick="scrollRight('${containerId}')"]`);
+            if (!containerId) return;
 
-            if (!leftBtn || !rightBtn) return;
+            const leftBtns = document.querySelectorAll(`[data-scroll-left="${containerId}"]`);
+            const rightBtns = document.querySelectorAll(`[data-scroll-right="${containerId}"]`);
 
-            const showLeft = container.scrollLeft > 0;
-            const showRight = container.scrollLeft < (container.scrollWidth - container.clientWidth - 1);
+            const canScrollLeft = container.scrollLeft > 0;
+            const canScrollRight = container.scrollLeft < (container.scrollWidth - container.clientWidth - 1);
 
+            leftBtns.forEach(btn => {
+                btn.style.opacity = canScrollLeft ? '1' : '0';
+                btn.style.pointerEvents = canScrollLeft ? 'auto' : 'none';
+            });
+
+            rightBtns.forEach(btn => {
+                btn.style.opacity = canScrollRight ? '1' : '0';
+                btn.style.pointerEvents = canScrollRight ? 'auto' : 'none';
+            });
         });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", () => {
         updateArrowVisibility();
+
         document.querySelectorAll('[class*="overflow-x-auto"]').forEach(container => {
             container.addEventListener('scroll', updateArrowVisibility);
         });
+
+        window.addEventListener('resize', updateArrowVisibility);
+        setTimeout(updateArrowVisibility, 300); // fallback jika konten load lambat
     });
 </script>
-
 @endpush
+
+
+@endsection
+
+
+
 
 
