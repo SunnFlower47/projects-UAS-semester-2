@@ -1,4 +1,4 @@
-<footer class="bg-gray-900 text-white mt-10">
+<footer class="bg-gray-900 text-white mt-10" role="contentinfo">
   <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
 
     <!-- Logo & Deskripsi -->

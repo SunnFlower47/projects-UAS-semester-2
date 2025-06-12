@@ -17,6 +17,8 @@
     <!-- Google Font: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
         /* Style tambahan untuk efek blur di navbar */
         .sticky-nav {
@@ -41,10 +43,10 @@
     </main>
 
     {{-- <-- footer --> --}}
-    @include('layouts.partials.footer') @stack('scripts')
-</body>
-@stack('scripts')
-{{-- sweetalert2 --}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @include('layouts.partials.footer')
 
+    {{-- sweetalert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @stack('scripts')
+</body>
 </html>
