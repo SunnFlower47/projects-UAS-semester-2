@@ -72,7 +72,7 @@
 
             @if ($user->photo)
                 <div class="mt-4 flex flex-col items-start gap-2">
-                    <img id="preview-photo" src="{{ asset('storage/' . $user->photo) }}"
+                    <img id="preview-photo" src="{{ asset("storage/{$user->photo}") }}"
                          alt="Profile Photo" class="rounded-md max-h-36 border border-gray-600 shadow">
                     <button type="button" id="btn-delete-photo"
                             class="text-sm text-red-400 hover:text-red-600 underline">

@@ -10,7 +10,7 @@
       <h2>{{ $book->judul }}</h2>
       <p>{{ $book->penulis }}</p>
       <div class="stars">★★★★☆ {{ number_format($book->rating ?? 4.5, 1) }}</div>
-      <a href="{{ route('pinjaman.create', $book->id) }}" class="btn-pinjam">Pinjam</a>
+      <a href="{{ route('perpustakaan.pinjaman.create', $book->id) }}" class="btn-pinjam">Pinjam</a>
     </div>
   </div>
 
