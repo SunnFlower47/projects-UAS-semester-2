@@ -88,4 +88,5 @@ class ProfileController extends Controller
 
     return back()->with('status', 'profile-updated');
 }
+
 }

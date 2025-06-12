@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
 
 class PinjamanResource extends Resource
 {
@@ -83,5 +84,15 @@ class PinjamanResource extends Resource
     public static function getPluralModelLabel(): string
     {
         return 'loans';
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return \Illuminate\Support\Facades\Auth::user()?->role === 'admin';
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return \Illuminate\Support\Facades\Auth::user()?->role === 'admin';
     }
 }
