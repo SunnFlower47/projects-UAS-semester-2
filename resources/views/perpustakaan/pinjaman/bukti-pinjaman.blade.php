@@ -22,7 +22,7 @@
       </div>
       <div class="flex justify-between border-b border-gray-700 pb-2">
         <span class="text-gray-400">Rak Buku</span>
-        <span>{{ $pinjaman->book->rak ?? 'Tidak diketahui' }}</span>
+        <span>{{ $pinjaman->book->lokasi_rak ?? 'Tidak diketahui' }}</span>
       </div>
       <div class="flex justify-between border-b border-gray-700 pb-2">
         <span class="text-gray-400">Status</span>
