@@ -11,7 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
-
+use Illuminate\Database\Eloquent\Model;
 
 class KategoriResource extends Resource
 {
@@ -52,5 +52,19 @@ class KategoriResource extends Resource
     public static function getNavigationIcon(): string
     {
         return 'heroicon-o-tag';
+    }
+    public static function canCreate(): bool
+    {
+        return \Illuminate\Support\Facades\Auth::user()?->role === 'admin';
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return \Illuminate\Support\Facades\Auth::user()?->role === 'admin';
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return \Illuminate\Support\Facades\Auth::user()?->role === 'admin';
     }
 }
