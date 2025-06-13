@@ -95,7 +95,7 @@
 @endpush
 <div class="demo-content">
         <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-300 bg-clip-text text-transparent">SunLibrary</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-300 bg-clip-text text-transparent">READZONE</h1>
             <p class="text-lg text-gray-300 max-w-2xl mx-auto">Perpustakaan digital modern dengan koleksi buku terlengkap. Akses ribuan buku dari berbagai genre hanya dengan satu klik.</p>
         </div>
 
