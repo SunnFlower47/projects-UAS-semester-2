@@ -140,7 +140,7 @@ git commit
 ```
 
 ## 📊 Diagram ERD utuk database
-![ERD Diagram](public/images/erd-perpustakaan.png)
+![ERD Diagram](public/images/perpustakaan-db.png)
 
 
 ### 📞 Kontak Lead Ridwan
