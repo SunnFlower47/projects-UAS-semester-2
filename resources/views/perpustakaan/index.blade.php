@@ -70,10 +70,64 @@
     .book-category {
         color: #6B7280;
     }
+    .pink-accent {
+      color: #E1BEE7;
+    }
+    .bg-pink-custom {
+      background-color: #E1BEE7;
+    }
+    .border-pink-custom {
+      border-color: #E1BEE7;
+    }
+    .hover-bg-pink-custom:hover {
+      background-color: #E1BEE7;
+    }
+    .hover-text-dark:hover {
+      color: #2c2c2c;
+    }
 </style>
 
 @endpush
+<div class="bg-[#E1BEE7] text-[#4a148c] overflow-x-hidden">
 
+  <div class="relative h-[65vh] overflow-hidden">
+    <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105 opacity-0 slide active" style="background-image: url('images/content2.jpg');">
+      <div class="relative z-10 h-full flex items-center bg-gradient-to-r from-[#4a148c]/60 to-transparent">
+        <div class="ml-10 md:ml-20 max-w-lg space-y-4 text-white">
+          <p class="uppercase font-bold text-sm tracking-widest pink-accent">Koleksi Terbaru</p>
+          <h2 class="text-3xl md:text-4xl font-bold title">Jejak Waktu di Kertas Usang</h2>
+          <a href="#" class="inline-block border-2 border-pink-custom text-white px-6 py-2 rounded-full uppercase font-semibold hover-bg-pink-custom hover-text-dark transition">Lihat Detail</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105 opacity-0 slide" style="background-image: url('images/content1.jpg');">
+      <div class="relative z-10 h-full flex items-center bg-gradient-to-r from-[#4a148c]/60 to-transparent">
+        <div class="ml-10 md:ml-20 max-w-lg space-y-4 text-white">
+          <p class="uppercase font-bold text-sm tracking-widest pink-accent">Rekomendasi Editor</p>
+          <h2 class="text-3xl md:text-4xl font-bold title">Atomic Habits</h2>
+          <a href="#" class="inline-block border-2 border-pink-custom text-white px-6 py-2 rounded-full uppercase font-semibold hover-bg-pink-custom hover-text-dark transition">Pinjam Sekarang</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105 opacity-0 slide" style="background-image: url('images/content3.jpg');">
+      <div class="relative z-10 h-full flex items-center bg-gradient-to-r from-[#4a148c]/60 to-transparent">
+        <div class="ml-10 md:ml-20 max-w-lg space-y-4 text-white">
+          <p class="uppercase font-bold text-sm tracking-widest pink-accent">Populer Minggu Ini</p>
+          <h2 class="text-3xl md:text-4xl font-bold title">Seni Berpikir Tenang</h2>
+          <a href="#" class="inline-block border-2 border-pink-custom text-white px-6 py-2 rounded-full uppercase font-semibold hover-bg-pink-custom hover-text-dark transition">Baca Sinopsis</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-30">
+      <span class="dot w-4 h-4 rounded-full bg-white/30 cursor-pointer"></span>
+      <span class="dot w-4 h-4 rounded-full bg-white/30 cursor-pointer"></span>
+      <span class="dot w-4 h-4 rounded-full bg-white/30 cursor-pointer"></span>
+    </div>
+  </div>
+</div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-12">
 
     <!-- Section Rekomendasi -->
@@ -524,6 +578,37 @@
         window.addEventListener('resize', updateArrowVisibility);
         setTimeout(updateArrowVisibility, 300); // fallback jika konten load lambat
     });
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let index = 0;
+
+    function showSlide(i) {
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('opacity-100', idx === i);
+        slide.classList.toggle('opacity-0', idx !== i);
+        slide.classList.toggle('z-20', idx === i);
+        dots[idx].style.backgroundColor = idx === i ? "#E1BEE7" : "rgba(255,255,255,0.3)";
+        dots[idx].classList.toggle('scale-125', idx === i);
+      });
+      index = i;
+    }
+
+    function nextSlide() {
+      let newIndex = (index + 1) % slides.length;
+      showSlide(newIndex);
+    }
+
+    let autoSlide = setInterval(nextSlide, 5000);
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        clearInterval(autoSlide);
+        showSlide(i);
+        autoSlide = setInterval(nextSlide, 5000);
+      });
+    });
+
+    showSlide(index);
 </script>
 @endpush
 
