@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PinjamanController;
 use App\Http\Controllers\PerpustakaanController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\KategoriController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/perpustakaan', [PerpustakaanController::class, 'index'])->name('perpustakaan.index');
     Route::get('/search', [PerpustakaanController::class, 'search'])->name('books.search');
     Route::get('/books/{book}', [BookController::class, 'show'])->name('perpustakaan.books.show');
+    Route::get('/daftar_buku', [BookController::class, 'daftarBuku'])->name('perpustakaan.books.daftar_buku');
+
 
     Route::get('/pinjaman/create/{book}', [PinjamanController::class, 'create'])->name('perpustakaan.pinjaman.create');
     Route::post('/pinjaman/store', [PinjamanController::class, 'store'])->name('perpustakaan.pinjaman.store');
@@ -31,8 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/histori-pinjaman', [PinjamanController::class, 'histori'])->name('perpustakaan.pinjaman.histori-pinjaman');
     Route::get('/histori/search', [PinjamanController::class, 'searchHistori'])->name('histori.search');
 
+    Route::get('/books/kategori/{nama}', [KategoriController::class, 'filterByKategori'])->name('kategori.filter');
 
 
 });
-
 require __DIR__.'/auth.php';

@@ -19,26 +19,43 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+@stack('styles')
     <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom right, #fff1f5, #f0f7ff, #f3fff5);
+            background-attachment: fixed;
+            background-size: cover;
+            color: #333;
+        }
         /* Style tambahan untuk efek blur di navbar */
-        .sticky-nav {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: background-color 0.3s ease;
+        .social-link:hover {
+            transform: scale(1.1);
+            color: #ec4899;
+            transition: all 0.3s ease;
+        }
+        .pagination a {
+            @apply bg-pink-200 text-indigo-800 hover:bg-pink-300 transition-colors;
+        }
+
+        .pagination span {
+            @apply bg-pink-500 text-white font-semibold shadow;
         }
 
     </style>
-    @stack('styles')
+
 
 </head>
 
-<body class="bg-gray-900 text-white">
+<body >
 
     {{-- <-- navbar --> --}}
     @include('layouts.partials.nvbar')
 
     {{-- <-- main content --> --}}
-    <main class="content-wrapper">
+    <main class="content">
         @yield('content')
     </main>
 

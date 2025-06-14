@@ -8,6 +8,7 @@ use App\Models\Pinjaman;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class PinjamanController extends Controller
 {
@@ -73,16 +74,22 @@ public function histori(Request $request)
 
     $pinjamans = $query->paginate(5)->withQueryString(); // paginate 5 item
 
-    // Update status jika lebih dari 7 hari
-    foreach ($pinjamans as $pinjaman) {
-        if ($pinjaman->status === 'dipinjam' && $pinjaman->tanggal_pinjam) {
-            $tanggalPinjam = \Carbon\Carbon::parse($pinjaman->tanggal_pinjam);
-            if (now()->diffInDays($tanggalPinjam) > 7) {
-                $pinjaman->status = 'terlambat';
-                $pinjaman->save();
-            }
+
+   foreach ($pinjamans as $pinjaman) {
+    // Hanya proses yang masih berstatus "dipinjam"
+    if ($pinjaman->status === 'dipinjam') {
+        $tanggalPinjam = Carbon::parse($pinjaman->tanggal_pinjam);
+        $batasKembali = $tanggalPinjam->addDays(7); // batas maksimal 7 hari peminjaman
+
+        // Jika sekarang sudah melewati batas kembali
+        if (now()->gt($batasKembali)) {
+            $pinjaman->status = 'terlambat';
+            $pinjaman->save();
         }
     }
+}
+
+
 
     return view('perpustakaan.pinjaman.histori-pinjaman', compact('pinjamans'));
 }
