@@ -1,45 +1,53 @@
-<footer class="bg-gray-900 text-white mt-10" role="contentinfo">
-  <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
-
-    <!-- Logo & Deskripsi -->
+<footer class="bg-[#fdf6ff]/80 backdrop-blur-sm text-gray-700 py-10 px-6 md:px-16 shadow-inner border-t border-purple-100">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Kolom Logo -->
     <div>
-      <h1 class="text-3xl font-bold text-yellow-400">PerpustakaanKu</h1>
-      <p class="mt-4 text-gray-300 text-sm leading-relaxed">
-        Temukan koleksi buku terbaik, belajar jadi lebih menyenangkan bersama kami. PerpustakaanKu selalu hadir untukmu.
-      </p>
-    </div>
-
-    <!-- Navigasi -->
-    <div>
-      <h2 class="text-xl font-semibold text-white mb-4">Navigasi</h2>
-      <ul class="space-y-3 text-sm">
-        <li><a href="/" class="hover:text-yellow-400 transition">Beranda</a></li>
-        <li><a href="/buku" class="hover:text-yellow-400 transition">Daftar Buku</a></li>
-        <li><a href="/kategori" class="hover:text-yellow-400 transition">Kategori</a></li>
-        <li><a href="/tentang" class="hover:text-yellow-400 transition">Tentang Kami</a></li>
-      </ul>
-    </div>
-
-    <!-- Sosial Media -->
-    <div>
-      <h2 class="text-xl font-semibold text-white mb-4">Hubungi Kami</h2>
-      <p class="text-gray-400 text-sm mb-4">Ikuti kami di sosial media untuk info terbaru:</p>
-      <div class="flex space-x-5 text-2xl">
-        <a href="https://www.instagram.com/ridwannnn_____" class="text-gray-300 hover:text-yellow-400 transition" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="#" class="text-gray-300 hover:text-yellow-400 transition" aria-label="Facebook">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" class="text-gray-300 hover:text-yellow-400 transition" aria-label="Twitter">
-          <i class="fab fa-twitter"></i>
-        </a>
+      <h2 class="text-2xl font-bold mb-3 text-purple-500">ReadZone</h2>
+      <p class="text-sm text-gray-600">Membuka jendela dunia melalui buku-buku berkualitas. Membaca adalah petualangan tak terbatas.</p>
+      <div class="flex space-x-3 mt-4 text-xl text-purple-300">
+        <a href="#"><i class="fab fa-facebook-f hover:text-purple-500 transition"></i></a>
+        <a href="#"><i class="fab fa-twitter hover:text-purple-500 transition"></i></a>
+        <a href="#"><i class="fab fa-instagram hover:text-purple-500 transition"></i></a>
+        <a href="#"><i class="fab fa-youtube hover:text-purple-500 transition"></i></a>
       </div>
     </div>
 
+    <!-- Tautan -->
+    <div>
+      <h3 class="text-lg font-semibold mb-3 text-cyan-500">Tautan Cepat</h3>
+      <ul class="space-y-2 text-sm text-gray-600">
+        <li><a href="#" class="hover:text-purple-500 transition">Beranda</a></li>
+        <li><a href="#" class="hover:text-purple-500 transition">Tentang Kami</a></li>
+        <li><a href="#" class="hover:text-purple-500 transition">Layanan</a></li>
+        <li><a href="#" class="hover:text-purple-500 transition">Koleksi Buku</a></li>
+        <li><a href="#" class="hover:text-purple-500 transition">Kontak</a></li>
+      </ul>
+    </div>
+
+    <!-- Kategori -->
+    <div>
+      <h3 class="text-lg font-semibold mb-3 text-cyan-500">Kategori Buku</h3>
+      <ul class="space-y-2 text-sm text-gray-600">
+        <li><a href="#" class="hover:text-purple-500 transition">Fiksi</a></li>
+        <li><a href="#" class="hover:text-purple-500 transition">Non-Fiksi</a></li>
+        <li><a href="#" class="hover:text-purple-500 transition">Sains</a></li>
+        <li><a href="#" class="hover:text-purple-500 transition">Sejarah</a></li>
+        <li><a href="#" class="hover:text-purple-500 transition">Teknologi</a></li>
+      </ul>
+    </div>
+
+    <!-- Kontak -->
+    <div>
+      <h3 class="text-lg font-semibold mb-3 text-cyan-500">Kontak Kami</h3>
+      <ul class="space-y-2 text-sm text-gray-600">
+        <li><i class="fas fa-map-marker-alt mr-2 text-purple-400"></i> Jakarta, Indonesia</li>
+        <li><i class="fas fa-phone mr-2 text-purple-400"></i> +62 123 4567 890</li>
+        <li><i class="fas fa-envelope mr-2 text-purple-400"></i> info@sunlibrary.com</li>
+      </ul>
+    </div>
   </div>
 
-  <div class="border-t border-gray-700 py-5 text-center text-sm text-gray-500">
-    &copy; {{ date('Y') }} PerpustakaanKu. All rights reserved.
+  <div class="mt-10 pt-4 text-center text-sm text-gray-500 border-t border-purple-100">
+    &copy; 2023 ReadZone. Semua Hak Dilindungi.
   </div>
 </footer>

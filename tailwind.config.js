@@ -17,11 +17,14 @@ export default {
             },
         },
     },
+    plugins: [
+        require('tailwind-scrollbar-hide')
+        ],
 
     plugins: [forms],
-    // plugins: [
-    // require('@tailwindcss/forms'),
-    // require('tailwind-scrollbar'),
-    // ],
+    plugins: [
+    require('@tailwindcss/forms'),
+    require('tailwind-scrollbar'),
+    ],
 
 };

@@ -16,6 +16,7 @@ public function index()
     $rekomendasi = Book::inRandomOrder()->limit(10)->get();
     $populer = Book::orderBy('stok', 'desc')->limit(10)->get(); // misal "populer" dilihat dari stok terbanyak
     $baru = Book::orderBy('created_at', 'desc')->limit(10)->get();
+    $kategoris = Kategori::all();
 
     return view('perpustakaan.index', compact('rekomendasi', 'populer', 'baru'));
 

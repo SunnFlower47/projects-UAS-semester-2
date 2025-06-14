@@ -5,314 +5,479 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-    .hide-scrollbar {
-        scrollbar-width: none; /* Firefox */
-        -ms-overflow-style: none; /* IE dan Edge */
-    }
+
+
     .hide-scrollbar::-webkit-scrollbar {
-        display: none; /* Chrome, Safari, Opera */
+        display: none;
     }
-    .scroll-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch; /* Untuk smooth scroll di mobile */
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .bg-card {
+    background: linear-gradient(135deg, #fdfcff, #eef6f9); /* Lebih lembut & terang */
 }
-    .mobile-menu {
-            background: rgba(20, 20, 30, 0.98);
-            backdrop-filter: blur(15px);
-        }
 
-        .mobile-menu-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px 0;
-            transition: all 0.3s ease;
-        }
+.bg-dark-card {
+    background: linear-gradient(135deg, #dcdde1, #f3f4f6); /* Lebih netral, elegan */
+}
 
-        .mobile-menu-item:hover {
-            background: rgba(0, 150, 200, 0.2);
-            padding-left: 20px;
-        }
+.pastel-text {
+    color: #6b7280; /* Abu pastel modern */
+}
 
-        .notification-dot {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 12px;
-            height: 12px;
-            background: #ff3b30;
-            border-radius: 50%;
-            border: 2px solid #1a1a2e;
-        }
 
-        .demo-content {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 30px;
-            background: rgba(10, 15, 30, 0.7);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-        }
 
-        .feature-card {
-            background: rgba(30, 40, 60, 0.6);
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 150, 255, 0.2);
-        }
+.rounded-lg {
+    border-radius: 1rem;
+}
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            background: rgba(40, 50, 80, 0.8);
-            box-shadow: 0 10px 25px rgba(0, 100, 255, 0.2);
-        }
+/* Animasi masuk */
+@keyframes fadeScaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.92);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
-        .btn-primary {
-            background: linear-gradient(90deg, #0062ff, #00c2ff);
-            border-radius: 30px;
-            padding: 12px 30px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-        }
+.book-card {
+     background: linear-gradient(135deg, #e1f7f5, #d2f1f0);
+    border-radius: 0.875rem;
+    border: 2px solid transparent;
+    animation: fadeScaleIn 0.5s ease forwards;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 150, 255, 0.4);
-        }
+.book-card:hover {
+    background: linear-gradient(135deg, #c9ebdf, #e0f0ff);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px) scale(1.05);
+}
 
-        .book-cover {
-            border-radius: 10px;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
 
-        .book-cover:hover {
-            transform: rotate(3deg) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 100, 255, 0.4);
-        }
+
+    .book-title {
+        color: #374151;
+    }
+
+    .book-category {
+        color: #6B7280;
+    }
 </style>
+
 @endpush
-<div class="demo-content">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-yellow-300 bg-clip-text text-transparent">READZONE</h1>
-            <p class="text-lg text-gray-300 max-w-2xl mx-auto">Perpustakaan digital modern dengan koleksi buku terlengkap. Akses ribuan buku dari berbagai genre hanya dengan satu klik.</p>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-            <div class="feature-card p-6">
-                <div class="text-cyan-400 text-4xl mb-4">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Koleksi Lengkap</h3>
-                <p class="text-gray-300">Akses lebih dari 50,000 buku dari berbagai genre dan penerbit ternama di seluruh dunia.</p>
-            </div>
-
-            <div class="feature-card p-6">
-                <div class="text-yellow-400 text-4xl mb-4">
-                    <i class="fas fa-laptop"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Akses Digital</h3>
-                <p class="text-gray-300">Baca buku kapan saja dan di mana saja melalui perangkat digital Anda tanpa batas.</p>
-            </div>
-
-            <div class="feature-card p-6">
-                <div class="text-green-400 text-4xl mb-4">
-                    <i class="fas fa-user-friends"></i>
-                </div>
-                <h3 class="text-xl font-semibold mb-2">Komunitas Pembaca</h3>
-                <p class="text-gray-300">Bergabung dengan komunitas pembaca untuk berdiskusi dan berbagi pengalaman membaca.</p>
-            </div>
-        </div>
-
-        <div class="mb-12">
-            <h2 class="text-2xl font-bold mb-6 text-center">Buku Populer Minggu Ini</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="text-center">
-                    <img src="https://m.media-amazon.com/images/I/81s6DUyQCZL._AC_UF1000,1000_QL80_.jpg" alt="Buku 1" class="book-cover w-full h-56 object-cover mb-3">
-                    <h3 class="font-semibold">Laut Bercerita</h3>
-                    <p class="text-gray-300 text-sm">Leila S. Chudori</p>
-                </div>
-
-                <div class="text-center">
-                    <img src="https://m.media-amazon.com/images/I/81QuEGw8VPL._AC_UF1000,1000_QL80_.jpg" alt="Buku 2" class="book-cover w-full h-56 object-cover mb-3">
-                    <h3 class="font-semibold">Bumi Manusia</h3>
-                    <p class="text-gray-300 text-sm">Pramoedya A.T.</p>
-                </div>
-
-                <div class="text-center">
-                    <img src="https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1548497031i/42815558.jpg" alt="Buku 3" class="book-cover w-full h-56 object-cover mb-3">
-                    <h3 class="font-semibold">Nebula</h3>
-                    <p class="text-gray-300 text-sm">Tere Liye</p>
-                </div>
-
-                <div class="text-center">
-                    <img src="https://cdn.gramedia.com/uploads/items/9786020324568_Pulang__w414_hauto.jpg" alt="Buku 4" class="book-cover w-full h-56 object-cover mb-3">
-                    <h3 class="font-semibold">Pulang</h3>
-                    <p class="text-gray-300 text-sm">Tere Liye</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-center">
-            <button class="btn-primary inline-flex items-center">
-                Lihat Semua Buku <i class="fas fa-arrow-right ml-2"></i>
-            </button>
-        </div>
-    </div>
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-12">
 
     <!-- Section Rekomendasi -->
-    <section class="relative">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-white">Rekomendasi</h2>
+    <section class="relative px-4 md:px-6 lg:px-12 py-6">
+        <div class="mb-6">
+            <h2 class="text-2xl font-semibold text-[#00BCD4] tracking-wide">Rekomendasi</h2>
+            <div class="w-full h-[2px] mt-2 bg-[#00BCD4] opacity-60"></div>
         </div>
+
         <div class="relative group">
             <!-- Mobile Arrows -->
-           <button onclick="scrollHorizontally('rekomendasi-scroll', -300)" aria-label="Scroll left" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            <button
+                onclick="scrollToLeft('rekomendasi-scroll')"
+                aria-label="Scroll left"
+                class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-pink-300/80 hover:bg-pink-400/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"/>
                 </svg>
             </button>
 
             <!-- Desktop Arrow -->
-            <button onclick="scrollHorizontally('rekomendasi-scroll', -300)" aria-label="Scroll left" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            <button
+                onclick="scrollToLeft('rekomendasi-scroll')"
+                aria-label="Scroll left"
+                class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-pink-300/80 hover:bg-pink-400/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"/>
                 </svg>
             </button>
 
-            <div class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar" id="rekomendasi-scroll">
-        @foreach ($rekomendasi as $buku)
-    <a href="{{ route('perpustakaan.books.show', $buku->id) }}" class="flex-shrink-0 w-40 md:w-48 snap-start bg-gray-800 rounded-lg border-2 border-transparent hover:border-cyan-400 hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out block">
-        <img src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}" alt="{{ $buku->judul }}" class="w-full h-56 md:h-64 object-cover">
-        <div class="p-3">
-            <p class="text-white font-semibold text-sm md:text-base truncate">{{ $buku->judul }}</p>
-            <p class="text-gray-400 text-xs md:text-sm truncate">{{ $buku->kategori->nama ?? '-' }}</p>
-        </div>
-    </a>
-@endforeach
+            <div
+                class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar"
+                id="rekomendasi-scroll">
+                @foreach ($rekomendasi as $buku)
+                <a
+                    href="{{ route('perpustakaan.books.show', $buku->id) }}"
+                    class="book-card flex-shrink-0 w-40 md:w-48 snap-start block hover:-translate-y-1 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out">
 
-            </div>
-           <button onclick="scrollRight('rekomendasi-scroll')" aria-label="Scroll right" class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
+                    <div
+                        class="bg-white p-1 rounded-lg shadow-sm hover:scale-105 transition-transform duration-300">
+                        <img
+                            src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}"
+                            alt="{{ $buku->judul }}"
+                            class="w-full h-56 md:h-64 object-cover rounded-md bg-gray-100"
+                            onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';"></div>
 
-            <button onclick="scrollRight('rekomendasi-scroll')" aria-label="Scroll right" class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-        </div>
-    </section>
+                        <div class="p-3 ">
+                            <p class="book-title font-semibold text-sm md:text-base truncate w-full"title="{{ $buku->judul }}">{{ $buku->judul }}</p>
+                            <div class="flex gap-1 mt-1">
+                            {{-- Kategori --}}
+                            <span class="text-[10px] bg-cyan-100 text-cyan-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
+                                {{ $buku->kategori->nama ?? '-' }}
+                            </span>
 
-    <!-- Section Buku Populer -->
-    <section class="relative">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-white">Buku Populer</h2>
-        </div>
-        <div class="relative group">
-            <!-- Mobile Arrows -->
-            <button onclick="scrollHorizontally('populer-scroll', -300)" aria-label="Scroll left" class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
+                            {{-- Genre --}}
+                            @if ($buku->kategori?->nama)
+                                <span class="text-[10px] bg-pink-100 text-pink-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama }}">
+                                    {{ $buku->kategori->genre ?? '-' }}
+                                </span>
+                            @endif
 
-            <!-- Desktop Arrow -->
-            <button onclick="scrollHorizontally('populer-scroll', -300)" aria-label="Scroll left" class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
-
-            <div class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar" id="populer-scroll">
-                @foreach ($populer as $buku)
-                <a href="{{ route('perpustakaan.books.show', $buku->id) }}" class="flex-shrink-0 w-40 md:w-48 snap-start bg-gray-800 rounded-lg border-2 border-transparent hover:border-cyan-400 hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out block">
-                        <img src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}" alt="{{ $buku->judul }}" class="w-full h-56 md:h-64 object-cover rounded-t-lg">
-                        <div class="p-3">
-                            <p class="text-white font-semibold text-sm md:text-base truncate">{{ $buku->judul }}</p>
-                            <p class="text-gray-400 text-xs md:text-sm truncate">{{ $buku->kategori->nama ?? '-' }}</p>
+                            </div>
+                            <p class="block text-center mt-2 text-[11px] text-white bg-cyan-400 hover:bg-cyan-500 px-2 py-[2px] rounded-full transition">Lihat Detail</p>
                         </div>
                     </a>
-                @endforeach
+
+                    @endforeach
+
+                </div>
+
+                <!-- Mobile Arrows -->
+                <button
+                    onclick="scrollToRight('rekomendasi-scroll')"
+                    aria-label="Scroll right"
+                    class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-pink-300/80 hover:bg-pink-400/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+
+                <!-- Desktop Arrow -->
+                <button
+                    onclick="scrollToRight('rekomendasi-scroll')"
+                    aria-label="Scroll right"
+                    class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10
+                    bg-pink-300/80 hover:bg-pink-400/90 text-white
+                    rounded-full w-10 h-10
+                    items-center justify-center
+                    transition-opacity opacity-0 group-hover:opacity-100">
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-6 h-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
+
             </div>
+        </section>
 
-            <button onclick="scrollRight('populer-scroll')" aria-label="Scroll right" class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
+        <!-- Section Buku Populer -->
+        <section class="relative">
+            <section class="relative px-4 md:px-6 lg:px-12 py-6">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-semibold text-[#66BB6A] tracking-wide">Populer</h2>
+                    <div class="w-full h-[2px] mt-2 bg-[#66BB6A] opacity-60"></div>
+                </div>
+                <div class="relative group">
+                    <!-- Mobile Arrows -->
+                    <button
+                        onclick="scrollToLeft('populer-scroll')"
+                        aria-label="Scroll left"
+                        class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-pink-300/80 hover:bg-pink-400/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
 
-            <button onclick="scrollRight('populer-scroll')" aria-label="Scroll right" class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-        </div>
-    </section>
+                    <!-- Desktop Arrow -->
+                    <button
+                        onclick="scrollToLeft('populer-scroll')"
+                        aria-label="Scroll left"
+                        class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-pink-300/80 hover:bg-pink-400/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 19l-7-7 7-7"/>
+                        </svg>
+                    </button>
 
-    <!-- Section Buku Baru Rilis -->
-    <section class="relative">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-white">Buku Baru Rilis</h2>
-        </div>
-        <div class="relative group">
-            <!-- Mobile Arrows -->
-    <button onclick="scrollHorizontally('baru-scroll', -300)" aria-label="Scroll left"
-        class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </button>
+                    <div
+                        class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar"
+                        id="populer-scroll">
+                        @foreach ($populer as $buku)
+                        <a
+                            href="{{ route('perpustakaan.books.show', $buku->id) }}"
+                            class="book-card flex-shrink-0 w-40 md:w-48 snap-start block hover:-translate-y-1 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out">
+                            <div
+                                class="bg-white p-1 rounded-lg shadow-sm hover:scale-105 transition-transform duration-300">
+                                <img
+                                    src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}"
+                                    alt="{{ $buku->judul }}"
+                                    class="w-full h-56 md:h-64 object-cover rounded-md bg-gray-100"
+                                    onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';"></div>
+                                <div class="p-3 ">
+                            <p class="book-title font-semibold text-sm md:text-base truncate w-full"title="{{ $buku->judul }}">{{ $buku->judul }}</p>
+                            <div class="flex gap-1 mt-1">
+                            {{-- Kategori --}}
+                            <span class="text-[10px] bg-cyan-100 text-cyan-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
+                                {{ $buku->kategori->nama ?? '-' }}
+                            </span>
 
-    <!-- Desktop Arrow -->
-    <button onclick="scrollHorizontally('baru-scroll', -300)" aria-label="Scroll left"
-        class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-    </button>
+                            {{-- Genre --}}
+                            @if ($buku->kategori?->nama)
+                                <span class="text-[10px] bg-pink-100 text-pink-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama }}">
+                                    {{ $buku->kategori->genre ?? '-' }}
+                                </span>
+                            @endif
 
-            <div class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar" id="baru-scroll">
-                @foreach ($baru as $buku)
-                    <div class="flex-shrink-0 w-40 md:w-48 snap-start bg-gray-800 rounded-lg border-2 border-transparent hover:border-cyan-400 hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out">
-                        <img src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}" alt="{{ $buku->judul }}" class="w-full h-56 md:h-64 object-cover rounded-t-lg">
-                        <div class="p-3">
-                            <p class="text-white font-semibold text-sm md:text-base truncate">{{ $buku->judul }}</p>
-                            <p class="text-gray-400 text-xs md:text-sm truncate">{{ $buku->kategori->nama ?? '-' }}</p>
+                            </div>
+                            <p class="block text-center mt-2 text-[11px] text-white bg-green-400 hover:bg-green-500 px-2 py-[2px] rounded-full transition">Lihat Detail</p>
                         </div>
+                            </a>
+                            @endforeach
+                        </div>
+
+                        <!-- Mobile Arrow -->
+                        <button
+                            onclick="scrollToRight('populer-scroll')"
+                            aria-label="Scroll right"
+                            class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-pink-300/80 hover:bg-pink-400/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-4 w-4"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
+
+                        <!-- Desktop Arrow -->
+                        <button
+                            onclick="scrollToRight('populer-scroll')"
+                            aria-label="Scroll right"
+                            class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10
+                                bg-pink-300/80 hover:bg-pink-400/90 text-white
+                                rounded-full w-10 h-10
+                                items-center justify-center
+                                transition-opacity opacity-0 group-hover:opacity-100">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="h-6 w-6"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"/>
+                            </svg>
+                        </button>
                     </div>
-                @endforeach
-            </div>
+                </section>
 
-            <button onclick="scrollRight('baru-scroll')" aria-label="Scroll right" class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
+                <!-- Section Buku Baru Rilis -->
+                <section class="relative">
+                    <section class="relative px-4 md:px-6 lg:px-12 py-6">
+                        <div class="mb-6">
+                            <h2 class="text-2xl font-semibold text-[#a46ede] tracking-wide">Terbaru</h2>
+                            <div class="w-full h-[2px] mt-2 bg-[#a46ede] opacity-60"></div>
+                        </div>
 
-            <button onclick="scrollRight('baru-scroll')" aria-label="Scroll right" class="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-gray-700/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </button>
-        </div>
-    </section>
+                        <div class="relative group">
+                            <!-- Mobile Arrows -->
+                            <button
+                                onclick="scrollToLeft('baru-scroll')"
+                                aria-label="Scroll left"
+                                class="md:hidden absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-pink-300/80 hover:bg-pink-400/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-4 w-4"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </button>
 
-</div>
+                            <!-- Desktop Arrow -->
+                            <button
+                                onclick="scrollToLeft('baru-scroll')"
+                                aria-label="Scroll left"
+                                class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-pink-300/80 hover:bg-pink-400/90 text-white rounded-full w-10 h-10 items-center justify-center transition-opacity opacity-0 group-hover:opacity-100">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 19l-7-7 7-7"/>
+                                </svg>
+                            </button>
 
+                            <div
+                                class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar"
+                                id="baru-scroll">
+                                @foreach ($baru as $buku)
+                                <a
+                                    href="{{ route('perpustakaan.books.show', $buku->id) }}"
+                                    class="book-card flex-shrink-0 w-40 md:w-48 snap-start block hover:-translate-y-1 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out">
+
+                                    <div
+                                        class="bg-white p-1 rounded-lg shadow-sm hover:scale-105 transition-transform duration-300">
+                                        <img
+                                            src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}"
+                                            alt="{{ $buku->judul }}"
+                                            class="w-full h-56 md:h-64 object-cover rounded-md bg-gray-100"
+                                            onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';"></div>
+                                        <div class="p-3 ">
+                                        <p class="book-title font-semibold text-sm md:text-base truncate w-full"title="{{ $buku->judul }}">{{ $buku->judul }}</p>
+                                        <div class="flex gap-1 mt-1">
+                                        {{-- Kategori --}}
+                                        <span class="text-[10px] bg-cyan-100 text-cyan-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
+                                            {{ $buku->kategori->nama ?? '-' }}
+                                        </span>
+
+                                        {{-- Genre --}}
+                                        @if ($buku->kategori?->nama)
+                                            <span class="text-[10px] bg-pink-100 text-pink-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama }}">
+                                                {{ $buku->kategori->genre ?? '-' }}
+                                            </span>
+                                        @endif
+
+                                        </div>
+                                        <p class="block text-center mt-2 text-[11px] text-white bg-purple-400 hover:bg-purple-500 px-2 py-[2px] rounded-full transition">Lihat Detail</p>
+                                    </div>
+                                    </a>
+                                    @endforeach
+                                </div>
+
+                                <!-- Mobile Arrow -->
+                                <button
+                                    onclick="scrollToRight('baru-scroll')"
+                                    aria-label="Scroll right"
+                                    class="md:hidden absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-pink-300/80 hover:bg-pink-400/90 text-white rounded-full w-8 h-8 flex items-center justify-center">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-4 w-4"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+
+                                <!-- Desktop Arrow -->
+                                <button
+                                    onclick="scrollToRight('baru-scroll')"
+                                    aria-label="Scroll right"
+                                    class="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10
+                                        bg-pink-300/80 hover:bg-pink-400/90 text-white
+                                        rounded-full w-10 h-10
+                                        items-center justify-center
+                                        transition-opacity opacity-0 group-hover:opacity-100">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </section>
+
+                    </div>
 @push('scripts')
 <script>
-    function scrollHorizontally(elementId, distance) {
-    const element = document.getElementById(elementId);
-    if (element) {
-        element.scrollLeft += distance;
+    function scrollToLeft(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) {
+            console.error(`Container with ID "${containerId}" not found.`);
+            return;
+        }
+
+        container.scrollBy({
+            left: -300,
+            behavior: 'smooth'
+        });
     }
-    }
-    function scrollRight(containerId) {
+    function scrollToRight(containerId) {
         const container = document.getElementById(containerId);
         if (!container) {
             console.error(`Container with ID "${containerId}" not found.`);
