@@ -31,9 +31,11 @@ class EditBooks extends EditRecord
         return $form
             ->schema([
                 TextInput::make('judul')->label('Judul Buku')->required(),
+                TextInput::make('genre')->label('Genre')->nullable(),
                 TextInput::make('pengarang')->label('Pengarang')->required(),
                 TextInput::make('penerbit')->label('Penerbit')->required(),
                 TextInput::make('tahun')->label('Tahun Terbit')->numeric()->required(),
+                TextInput::make('tempat_terbit')->label('Tempat Terbit')->nullable(),
                 TextInput::make('isbn')->label('ISBN')->unique(ignoreRecord: true)->nullable(),
                 TextInput::make('jumlah_halaman')->label('Jumlah Halaman')->numeric()->nullable(),
                 TextInput::make('lokasi_rak')->label('Lokasi Rak')->nullable(),

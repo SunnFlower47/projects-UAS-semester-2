@@ -15,22 +15,24 @@ class BookController extends Controller
     }
 
     public function daftarBuku(Request $request)
-    {
-        $books = Book::with('kategori')
-            ->when($request->kategori, function ($query) use ($request) {
-                $query->where('kategori_id', $request->kategori);
-            })
-            ->when($request->genre, function ($query) use ($request) {
-                $query->whereHas('kategori', function ($query) use ($request) {
-                    $query->where('genre', $request->genre);
-                });
-            })
-            ->paginate(10)
-            ->appends($request->only('kategori', 'genre')); // supaya filter tetap nyangkut saat pindah halaman
+{
+    $books = Book::with('kategori')
+        ->when($request->kategori, function ($query) use ($request) {
+            $query->where('kategori_id', $request->kategori);
+        })
+        ->when($request->genre, function ($query) use ($request) {
+            $query->where('genre', $request->genre);
+        })
+        ->paginate(12)
+        ->appends($request->only('kategori', 'genre'));
 
-        $allKategori = Kategori::all();
-        $allGenre = Kategori::select('genre')->distinct()->pluck('genre');
+    $allKategori = Kategori::all();
 
-        return view('perpustakaan.books.daftar_buku', compact('books', 'allKategori', 'allGenre'));
-    }
+    // Karena genre sudah di books, ambil distinct genre dari books, bukan kategori
+    $allGenre = Book::select('genre')->distinct()->pluck('genre');
+
+    return view('perpustakaan.books.daftar_buku', compact('books', 'allKategori', 'allGenre'));
+}
+
+
 }

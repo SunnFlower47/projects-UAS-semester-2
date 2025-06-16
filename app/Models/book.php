@@ -14,8 +14,10 @@ class Book extends Model
 
     protected $fillable = [
         'judul',
+        'genre',
         'pengarang',
         'penerbit',
+        'publication_place',
         'tahun',
         'stok',
         'kategori_id',
@@ -27,6 +29,10 @@ class Book extends Model
         'deskripsi'
 
     ];
+    public function peminjaman()
+{
+    return $this->hasMany(Pinjaman::class);
+}
 
     // Relasi ke kategori
     public function kategori()
