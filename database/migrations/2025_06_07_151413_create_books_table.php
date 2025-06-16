@@ -14,8 +14,10 @@ return new class extends Migration
     Schema::create('books', function (Blueprint $table) {
         $table->id();
         $table->string('judul');
+        $table->string('genre')->nullable();
         $table->string('pengarang');
         $table->string('penerbit');
+        $table->string('publication_place')->nullable();
         $table->string('isbn')->unique()->nullable();
         $table->integer('tahun');
         $table->integer('jumlah_halaman')->nullable();

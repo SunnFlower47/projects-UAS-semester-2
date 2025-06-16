@@ -7,7 +7,11 @@
     </div>
 
     @if($books->isEmpty())
-        <p class="text-gray-500 italic">Tidak ada buku ditemukan.</p>
+        <div class="flex items-center justify-center min-h-[45vh]">
+        <p class="text-gray-500 italic text-lg text-center">
+            Tidak ada buku yang cocok dengan pencarian "{{ $query }}"
+        </p>
+    </div>
     @else
     <div class="relative">
         <!-- Panah Kiri -->

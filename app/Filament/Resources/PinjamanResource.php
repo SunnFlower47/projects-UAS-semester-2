@@ -34,6 +34,7 @@ class PinjamanResource extends Resource
     return $table
         ->columns([
             TextColumn::make('id')->sortable(),
+            TextColumn::make('kode_transaksi')->label('Kode Transaksi')->sortable()->searchable(),
             TextColumn::make('user.name')->label('Peminjam')->sortable()->searchable(),
             TextColumn::make('book.judul')->label('Buku')->sortable()->searchable(),
             TextColumn::make('tanggal_pinjam')->date()->label('Tanggal Pinjam')->sortable(),

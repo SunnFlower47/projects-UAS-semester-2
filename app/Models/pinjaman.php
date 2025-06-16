@@ -14,6 +14,11 @@ class Pinjaman extends Model
 
     protected $table = 'pinjaman';
 
+    protected $casts = [
+    'tanggal_pinjam' => 'datetime',
+    'tanggal_kembali' => 'datetime',
+];
+
     protected $fillable = [
         'user_id',
         'book_id',

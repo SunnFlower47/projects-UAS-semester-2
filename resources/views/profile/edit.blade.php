@@ -2,43 +2,42 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8 space-y-10">
-    <h2 class="text-3xl font-bold text-white">Your Profile</h2>
+    <h2 class="text-3xl font-bold text-pink-500">Profil Kamu</h2>
 
     {{-- Profile Information Card --}}
-    <div class="bg-gray-800 rounded-lg shadow-md border border-gray-700">
-        <div class="bg-cyan-600 px-6 py-4 rounded-t-lg">
-            <h5 class="text-white text-lg font-semibold">Update Profile Information</h5>
-            <p class="text-sm text-cyan-100">Update your account's profile information and email address.</p>
+    <div class="bg-pink-50 rounded-lg shadow-md border border-pink-200">
+        <div class="bg-pink-200 px-6 py-4 rounded-t-lg">
+            <h5 class="text-pink-900 text-lg font-semibold">Update Informasi Profil</h5>
+            <p class="text-sm text-pink-800">Perbarui informasi akun dan email kamu.</p>
         </div>
-        <div class="p-6 bg-gray-900 rounded-b-lg">
+        <div class="p-6 bg-white rounded-b-lg">
             @include('profile.partials.update-profile-information-form')
         </div>
     </div>
 
     {{-- Password Update Card --}}
-    <div class="bg-gray-800 rounded-lg shadow-md border border-gray-700">
-        <div class="bg-emerald-600 px-6 py-4 rounded-t-lg">
-            <h5 class="text-white text-lg font-semibold">Update Password</h5>
-            <p class="text-sm text-emerald-100">Use a strong and unique password to protect your account.</p>
+    <div class="bg-purple-50 rounded-lg shadow-md border border-teal-200">
+        <div class="bg-purple-200 px-6 py-4 rounded-t-lg">
+            <h5 class="text-teal-900 text-lg font-semibold">Ubah Password</h5>
+            <p class="text-sm text-teal-800">Gunakan password yang kuat dan unik untuk keamanan akunmu.</p>
         </div>
-        <div class="p-6 bg-gray-900 rounded-b-lg">
+        <div class="p-6 bg-white rounded-b-lg">
             @include('profile.partials.update-password-form')
         </div>
     </div>
 
     {{-- Delete Account Card --}}
-    <div class="bg-gray-800 rounded-lg shadow-md border border-red-600">
-        <div class="bg-red-600 px-6 py-4 rounded-t-lg">
-            <h5 class="text-white text-lg font-semibold">Delete Account</h5>
-            <p class="text-sm text-red-100">This action is permanent and cannot be undone.</p>
+    <div class="bg-red-50 rounded-lg shadow-md border border-red-300">
+        <div class="bg-red-200 px-6 py-4 rounded-t-lg">
+            <h5 class="text-red-900 text-lg font-semibold">Hapus Akun</h5>
+            <p class="text-sm text-red-800">Tindakan ini permanen dan tidak bisa dibatalkan.</p>
         </div>
-        <div class="p-6 bg-gray-900 rounded-b-lg">
+        <div class="p-6 bg-white rounded-b-lg">
             @include('profile.partials.delete-user-form')
         </div>
     </div>
 </div>
 @endsection
-
 @push('scripts')
 <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 <script>
@@ -114,4 +113,3 @@ document.addEventListener('DOMContentLoaded', () => {
     @endpush
 @endif
 @endpush
-

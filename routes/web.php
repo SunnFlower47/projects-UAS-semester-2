@@ -11,9 +11,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/perpustakaan/aboutus', function () {
+        return view('perpustakaan.aboutus');
+    })->name('perpustakaan.aboutus');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,11 +31,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/pinjaman/store', [PinjamanController::class, 'store'])->name('perpustakaan.pinjaman.store');
     Route::get('/pinjaman/bukti/{id}', [PinjamanController::class, 'bukti'])->name('perpustakaan.pinjaman.bukti-pinjaman');
     Route::get('/pinjaman/{id}/download-pdf', [PinjamanController::class, 'downloadPDF'])->name('perpustakaan.pinjaman.download-pdf');
-    Route::get('/histori-pinjaman', [PinjamanController::class, 'histori'])->name('perpustakaan.pinjaman.histori-pinjaman');
-    Route::get('/histori/search', [PinjamanController::class, 'searchHistori'])->name('histori.search');
-
+    Route::get('/riwayat-pinjaman', [PinjamanController::class, 'riwayat'])->name('perpustakaan.pinjaman.riwayat-pinjaman');
+    Route::get('/riwayat/search', [PinjamanController::class,'searchRiwayat'])->name('perpustakaan.pinjaman._search-riwayat.search');
+    Route::get('/pinjaman/{id}/detail', [PinjamanController::class, 'detail'])->name('perpustakaan.pinjaman.detail');
     Route::get('/books/kategori/{nama}', [KategoriController::class, 'filterByKategori'])->name('kategori.filter');
-
 
 });
 require __DIR__.'/auth.php';

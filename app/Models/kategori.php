@@ -14,7 +14,6 @@ class Kategori extends Model
     protected $fillable = [
         'nama',
         'deskripsi',
-        'genre'
     ];
 
     // Relasi ke Book

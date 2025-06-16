@@ -21,14 +21,18 @@ class CreateBooks extends CreateRecord
             TextInput::make('judul')
                 ->label('Judul Buku')
                 ->required(),
-
+            TextInput::make('genre')
+                ->label('Genre')
+                ->nullable(),
             TextInput::make('pengarang')
                 ->label('Pengarang')
                 ->required(),
             TextInput::make('penerbit')
                 ->label('Penerbit')
                 ->required(),
-
+            TextInput::make('publication_place')
+                ->label('Tempat Terbit')
+                ->nullable(),
             TextInput::make('tahun')
                 ->label('Tahun Terbit')
                 ->numeric()

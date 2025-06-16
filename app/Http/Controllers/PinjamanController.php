@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Pinjaman;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 
@@ -59,58 +58,75 @@ public function downloadPDF($id)
     $pinjaman = Pinjaman::with(['book', 'user'])->findOrFail($id);
 
     $pdf = Pdf::loadView('perpustakaan.pinjaman.download-pdf', compact('pinjaman'));
-    return $pdf->download('Bukti-Peminjaman-' . $pinjaman->kode_transaksi . '.pdf');
+    return $pdf->download("Bukti-Peminjaman-{$pinjaman->kode_transaksi}.pdf");
 }
-public function histori(Request $request)
-{
-    $query = Pinjaman::with(['book', 'user'])
-        ->where('user_id', Auth::id())
-        ->latest();
 
-    // Filter status (jika ada dari request)
-    if ($request->has('status') && in_array($request->status, ['dipinjam', 'dikembalikan', 'terlambat'])) {
+
+public function riwayat(Request $request)
+{
+    // Periksa dan update status terlambat
+    Pinjaman::where('user_id', Auth::id())
+        ->where('status', 'dipinjam')
+        ->get()
+        ->each(function ($pinjaman) {
+            if ($pinjaman->tanggal_kembali && now()->greaterThan(Carbon::parse($pinjaman->tanggal_kembali)->endOfDay())) {
+                $pinjaman->status = 'terlambat';
+                $pinjaman->save();
+            }
+        });
+
+    $query = Pinjaman::with(['book', 'user'])
+        ->where('user_id', Auth::id());
+
+    // FILTER: Status
+    if ($request->filled('status') && in_array($request->status, ['dipinjam', 'dikembalikan', 'terlambat'])) {
         $query->where('status', $request->status);
     }
 
-    $pinjamans = $query->paginate(5)->withQueryString(); // paginate 5 item
-
-
-   foreach ($pinjamans as $pinjaman) {
-    // Hanya proses yang masih berstatus "dipinjam"
-    if ($pinjaman->status === 'dipinjam') {
-        $tanggalPinjam = Carbon::parse($pinjaman->tanggal_pinjam);
-        $batasKembali = $tanggalPinjam->addDays(7); // batas maksimal 7 hari peminjaman
-
-        // Jika sekarang sudah melewati batas kembali
-        if (now()->gt($batasKembali)) {
-            $pinjaman->status = 'terlambat';
-            $pinjaman->save();
-        }
+    // FILTER: Search query
+    if ($request->filled('q')) {
+        $query->where(function ($q) use ($request) {
+            $q->where('kode_transaksi', 'like', "%{$request->q}%")
+              ->orWhereHas('book', function ($q2) use ($request) {
+                  $q2->where('judul', 'like', "%{$request->q}%");
+              });
+        });
     }
+
+    $pinjamans = $query->latest()->paginate(12)->withQueryString();
+
+    return view('perpustakaan.pinjaman.riwayat-pinjaman', compact('pinjamans'));
 }
-
-
-
-    return view('perpustakaan.pinjaman.histori-pinjaman', compact('pinjamans'));
-}
-public function searchHistori(Request $request)
+public function searchRiwayat(Request $request)
 {
-    $keyword = $request->q;
-
     $pinjamans = Pinjaman::with('book')
-    ->where('user_id', Auth::id())
-    ->where(function ($query) use ($keyword) {
-        $query->where('kode_transaksi', 'like', "%$keyword%")
-              ->orWhereHas('book', fn($q) => $q->where('judul', 'like', "%$keyword%"));
-    })
-    ->latest()
-    ->paginate(5)
-    ->withQueryString();
+        ->where('user_id', Auth::id())
+        ->when($request->q, fn($q) => $q
+            ->where('kode_transaksi', 'like', "%{$request->q}%")
+            ->orWhereHas('book', fn($q2) => $q2->where('judul', 'like', "%{$request->q}%"))
+        )
+        ->when($request->status, fn($q) => $q->where('status', $request->status))
+        ->orderByDesc('tanggal_pinjam')
+        ->paginate(12)
+        ->appends($request->all()); // ini jaga query string tetap nempel
 
-
-    return view('perpustakaan.pinjaman.search-pinjaman', compact('pinjamans'));
+    // Kalau request AJAX, kirim partial aja
+    if ($request->ajax()) {
+    return view('perpustakaan.pinjaman._search-riwayat', compact('pinjamans'));
 }
 
+
+    // Kalau bukan AJAX, render riwayat normal (bukan redirect ya)
+    return view('perpustakaan.pinjaman.riwayat-pinjaman', compact('pinjamans'));
+}
+
+
+
+public function detail($id)
+{
+    $pinjaman = Pinjaman::with(['book.kategori'])->findOrFail($id);
+    return view('perpustakaan.pinjaman.detail', compact('pinjaman'));
+}
 
 
 

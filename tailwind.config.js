@@ -9,7 +9,6 @@ export default {
         './resources/views/**/*.blade.php',
     ],
 
-
     theme: {
         extend: {
             fontFamily: {
@@ -17,14 +16,21 @@ export default {
             },
         },
     },
+safelist: [
+  'translate-x-0',
+  '-translate-x-full'
+],
+
     plugins: [
+        forms,
+        require('tailwind-scrollbar'),
         require('tailwind-scrollbar-hide')
-        ],
-
-    plugins: [forms],
-    plugins: [
-    require('@tailwindcss/forms'),
-    require('tailwind-scrollbar'),
     ],
-
+    colors: {
+  shimmer: {
+    light: '#f3f3f3',
+    medium: '#e2e2e2',
+    dark: '#cccccc',
+  },
+}
 };
