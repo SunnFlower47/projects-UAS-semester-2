@@ -12,6 +12,9 @@ export default defineConfig({
     minify: 'esbuild',
     cssCodeSplit: true,
   },
+  server: {
+    hmr: {
+      overlay: false, // matikan error overlay saat HMR (hot reload)
+    },
+  },
 });
-
-

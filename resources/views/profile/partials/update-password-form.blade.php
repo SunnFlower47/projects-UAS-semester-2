@@ -1,28 +1,28 @@
-<section class="p-6 bg-gray-900 rounded-lg max-w-xl ml-10">
+<section class="p-6 bg-purple-50 rounded-lg w-full shadow-md border border-purple-200">
     <header class="mb-6">
-        <h2 class="text-xl font-semibold text-white">
-            {{ __('Update Password') }}
+        <h2 class="text-xl font-semibold text-purple-800">
+            {{ __('Perbarui Password') }}
         </h2>
-        <p class="text-sm text-gray-300">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
+        <p class="text-sm text-purple-700">
+            {{ __('Gunakan password yang panjang dan acak untuk menjaga akunmu tetap aman.') }}
         </p>
     </header>
 
     <form method="post" action="{{ route('password.update') }}" class="space-y-6" novalidate>
-            @csrf
+        @csrf
         @method('put')
 
-        {{-- Current Password --}}
+        {{-- Password Saat Ini --}}
         <div>
-            <label for="update_password_current_password" class="block text-sm font-medium text-white">
-                {{ __('Current Password') }}
+            <label for="update_password_current_password" class="block text-sm font-medium text-purple-800">
+                {{ __('Password Saat Ini') }}
             </label>
             <input
                 type="password"
                 name="current_password"
                 id="update_password_current_password"
                 autocomplete="current-password"
-                class="mt-1 block w-full rounded-md bg-gray-700 text-white border border-gray-600 focus:border-cyan-500 focus:ring focus:ring-cyan-500 focus:ring-opacity-50 @if($errors->updatePassword->has('current_password')) border-red-500 @endif"
+                class="mt-1 block w-full rounded-md bg-white text-purple-900 border border-purple-300 focus:border-purple-400 focus:ring focus:ring-purple-300 focus:ring-opacity-50 @if($errors->updatePassword->has('current_password')) border-red-500 @endif"
             >
             @if ($errors->updatePassword->has('current_password'))
                 <p class="text-red-500 text-sm mt-1">
@@ -31,17 +31,17 @@
             @endif
         </div>
 
-        {{-- New Password --}}
+        {{-- Password Baru --}}
         <div>
-            <label for="update_password_password" class="block text-sm font-medium text-white">
-                {{ __('New Password') }}
+            <label for="update_password_password" class="block text-sm font-medium text-purple-800">
+                {{ __('Password Baru') }}
             </label>
             <input
                 type="password"
                 name="password"
                 id="update_password_password"
                 autocomplete="new-password"
-                class="mt-1 block w-full rounded-md bg-gray-700 text-white border border-gray-600 focus:border-cyan-500 focus:ring focus:ring-cyan-500 focus:ring-opacity-50 @if($errors->updatePassword->has('password')) border-red-500 @endif"
+                class="mt-1 block w-full rounded-md bg-white text-purple-900 border border-purple-300 focus:border-purple-400 focus:ring focus:ring-purple-300 focus:ring-opacity-50 @if($errors->updatePassword->has('password')) border-red-500 @endif"
             >
             @if ($errors->updatePassword->has('password'))
                 <p class="text-red-500 text-sm mt-1">
@@ -50,17 +50,17 @@
             @endif
         </div>
 
-        {{-- Confirm Password --}}
+        {{-- Konfirmasi Password --}}
         <div>
-            <label for="update_password_password_confirmation" class="block text-sm font-medium text-white">
-                {{ __('Confirm Password') }}
+            <label for="update_password_password_confirmation" class="block text-sm font-medium text-purple-800">
+                {{ __('Konfirmasi Password') }}
             </label>
             <input
                 type="password"
                 name="password_confirmation"
                 id="update_password_password_confirmation"
                 autocomplete="new-password"
-                class="mt-1 block w-full rounded-md bg-gray-700 text-white border border-gray-600 focus:border-cyan-500 focus:ring focus:ring-cyan-500 focus:ring-opacity-50 @if($errors->updatePassword->has('password_confirmation')) border-red-500 @endif"
+                class="mt-1 block w-full rounded-md bg-white text-purple-900 border border-purple-300 focus:border-purple-400 focus:ring focus:ring-purple-300 focus:ring-opacity-50 @if($errors->updatePassword->has('password_confirmation')) border-red-500 @endif"
             >
             @if ($errors->updatePassword->has('password_confirmation'))
                 <p class="text-red-500 text-sm mt-1">
@@ -73,14 +73,14 @@
         <div class="flex items-center gap-4">
             <button
                 type="submit"
-                class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-4 py-2 rounded shadow transition"
+                class="bg-purple-400 hover:bg-purple-500 text-white font-semibold px-4 py-2 rounded shadow transition"
             >
-                {{ __('Save') }}
+                {{ __('Simpan') }}
             </button>
 
             @if (session('status') === 'password-updated')
-                <span class="text-green-400 text-sm">
-                    {{ __('Saved.') }}
+                <span class="text-emerald-600 text-sm">
+                    {{ __('Password berhasil diperbarui.') }}
                 </span>
             @endif
         </div>

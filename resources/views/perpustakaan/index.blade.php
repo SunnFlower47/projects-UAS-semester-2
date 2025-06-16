@@ -1,12 +1,10 @@
 @extends('layouts.perpus')
 
+@section('title', 'main content')
+
 @section('content')
 @push('styles')
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
-
-
     .hide-scrollbar::-webkit-scrollbar {
         display: none;
     }
@@ -16,127 +14,199 @@
         scrollbar-width: none;
     }
 
-    .bg-card {
-    background: linear-gradient(135deg, #fdfcff, #eef6f9); /* Lebih lembut & terang */
-}
-
-.bg-dark-card {
-    background: linear-gradient(135deg, #dcdde1, #f3f4f6); /* Lebih netral, elegan */
-}
-
-.pastel-text {
-    color: #6b7280; /* Abu pastel modern */
-}
-
-
-
-.rounded-lg {
-    border-radius: 1rem;
-}
-
-/* Animasi masuk */
-@keyframes fadeScaleIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.92);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.book-card {
-     background: linear-gradient(135deg, #e1f7f5, #d2f1f0);
-    border-radius: 0.875rem;
-    border: 2px solid transparent;
-    animation: fadeScaleIn 0.5s ease forwards;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-}
-
-.book-card:hover {
-    background: linear-gradient(135deg, #c9ebdf, #e0f0ff);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    transform: translateY(-4px) scale(1.05);
-}
-
-
-
     .book-title {
         color: #374151;
     }
 
-    .book-category {
-        color: #6B7280;
+    /* Add background styles to slider */
+    .slide {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
-    .pink-accent {
-      color: #E1BEE7;
-    }
-    .bg-pink-custom {
-      background-color: #E1BEE7;
-    }
-    .border-pink-custom {
-      border-color: #E1BEE7;
-    }
-    .hover-bg-pink-custom:hover {
-      background-color: #E1BEE7;
-    }
-    .hover-text-dark:hover {
-      color: #2c2c2c;
-    }
+
 </style>
-
 @endpush
-<div class="bg-[#E1BEE7] text-[#4a148c] overflow-x-hidden">
+<section class="bg-transparent text-[#5e3487] overflow-x-hidden">
+  <div class="relative h-[28vh] sm:h-[34vh] md:h-[40vh] lg:h-[45vh] xl:h-[50vh] overflow-hidden">
 
-  <div class="relative h-[65vh] overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105 opacity-0 slide active" style="background-image: url('images/content2.jpg');">
-      <div class="relative z-10 h-full flex items-center bg-gradient-to-r from-[#4a148c]/60 to-transparent">
-        <div class="ml-10 md:ml-20 max-w-lg space-y-4 text-white">
-          <p class="uppercase font-bold text-sm tracking-widest pink-accent">Koleksi Terbaru</p>
-          <h2 class="text-3xl md:text-4xl font-bold title">Jejak Waktu di Kertas Usang</h2>
-          <a href="#" class="inline-block border-2 border-pink-custom text-white px-6 py-2 rounded-full uppercase font-semibold hover-bg-pink-custom hover-text-dark transition">Lihat Detail</a>
+    @php
+      $backgrounds = ['content2.jpg', 'content1.jpg', 'content3.jpg'];
+      $gradients = [
+        'from-[#fbe4f0]/70 via-[#f8e7f5]/50',
+        'from-[#e3f2fd]/70 via-[#edf5ff]/50',
+        'from-[#e8f5e9]/70 via-[#f3fff5]/50'
+      ];
+      $textColors = ['text-[#7b3e82]', 'text-[#3a5b94]', 'text-[#457e55]'];
+      $buttonColors = ['e89ac7', '90caf9', 'a5d6a7'];
+    @endphp
+
+    @if(count($sliderBooks) > 0)
+      @foreach($sliderBooks as $index => $book)
+      <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-100 opacity-0 slide {{ $index === 0 ? 'active' : '' }}"
+        style="background-image: url('{{ asset('images/' . $backgrounds[$index % 3]) }}');">
+        <div class="relative z-10 h-full flex items-center bg-gradient-to-r {{ $gradients[$index % 3] }} to-transparent">
+          <div class="ml-6 sm:ml-10 md:ml-16 max-w-md space-y-3 {{ $textColors[$index % 3] }} pt-4">
+            <p class="uppercase font-semibold text-xs sm:text-sm tracking-widest drop-shadow-md">
+              {{ $book->kategori->nama ?? 'Kategori' }}
+            </p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide drop-shadow-lg leading-tight">
+              {{ $book->judul }}
+            </h2>
+            <a href="{{ route('perpustakaan.books.show', $book->id) }}"
+            class="inline-block border-2 border-{{ $buttonColors[$index % 3] }} text-{{ $buttonColors[$index % 3] }} px-5 py-2 rounded-full uppercase text-xs sm:text-sm font-semibold bg-white/20 hover:bg-white/40 backdrop-blur-sm transition">
+            Pinjam Sekarang
+            </a>
+
+          </div>
         </div>
+      </div>
+      @endforeach
+
+      <!-- DOTS -->
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-30">
+        @foreach($sliderBooks as $book)
+        <span class="dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white cursor-pointer"></span>
+        @endforeach
+      </div>
+    @else
+      <!-- Fallback konten kalau tidak ada buku -->
+      <div class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('{{ asset('images/content1.jpg') }}');">
+        <div class="relative z-10 h-full flex items-center bg-gradient-to-r from-[#e3f2fd]/70 via-[#edf5ff]/50 to-transparent">
+          <div class="ml-6 sm:ml-10 md:ml-16 max-w-md space-y-3 text-[#3a5b94] pt-4">
+            <p class="uppercase font-semibold text-xs sm:text-sm tracking-widest drop-shadow-md">
+              Tidak Ada Buku
+            </p>
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide drop-shadow-lg leading-tight">
+              Belum Ada Buku yang Ditampilkan
+            </h2>
+            <a href="#"
+              class="inline-block border-2 border-[#90caf9] text-[#90caf9] px-5 py-2 rounded-full uppercase text-xs sm:text-sm font-semibold hover:bg-[#90caf9] hover:text-white transition drop-shadow-md">
+              Kembali Nanti
+            </a>
+          </div>
+        </div>
+      </div>
+    @endif
+
+  </div>
+</section>
+
+
+@php
+use Carbon\Carbon;
+
+$today = now()->startOfDay(); // Sesuaikan dengan controller
+$notif = null;
+
+if ($currentLoan && $currentLoan->tanggal_kembali) {
+    $dueDate = Carbon::parse($currentLoan->tanggal_kembali)->startOfDay();
+    $diffDays = $today->diffInDays($dueDate, false);
+
+    if ($currentLoan->status === 'terlambat') {
+        $notif = [
+            'type' => 'danger',
+            'message' => "Buku <strong>{$currentLoan->book->judul}</strong> sudah melewati batas pengembalian!"
+        ];
+    } elseif ($diffDays <= 2 && $diffDays >= 0) {
+        $notif = [
+            'type' => 'warning',
+            'message' => "Buku <strong>{$currentLoan->book->judul}</strong> hampir jatuh tempo. Segera dikembalikan ya."
+        ];
+    }
+}
+@endphp
+
+<section class="py-10 bg-transparent">
+  <div class="max-w-screen-xl mx-auto px-6">
+    <!-- Header -->
+    <h2 class="text-2xl font-semibold text-pink-700 mb-6 flex items-center gap-2">
+      <x-heroicon-o-user class="w-5 h-5 text-pink-500" />
+      Selamat Datang, {{ auth()->user()->name }}
+    </h2>
+<!-- Notifikasi -->
+    @if ($notif)
+      <div class="mb-6 px-4 py-3 rounded-lg shadow-md
+        {{ $notif['type'] === 'danger' ? 'bg-red-100 text-red-700 border border-red-300' : 'bg-yellow-100 text-yellow-800 border border-yellow-300' }}">
+        <div class="flex items-start gap-2">
+          <x-heroicon-o-exclamation-circle class="w-5 h-5 mt-1" />
+          <div class="text-sm leading-snug">{!! $notif['message'] !!}</div>
+        </div>
+      </div>
+    @endif
+    <!-- Info Buku -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Terakhir Dipinjam -->
+      <div class="p-6 rounded-2xl bg-pink-50 border border-pink-100 shadow">
+        <div class="flex items-center gap-2 text-pink-600 font-medium mb-2">
+          <x-heroicon-o-book-open class="w-5 h-5" />
+          Buku Terakhir
+        </div>
+        @if ($lastLoan)
+          <h3 class="text-lg font-bold text-purple-800">{{ $lastLoan->book->judul }}</h3>
+          <p class="text-sm text-gray-500 mt-1">
+            Dipinjam: {{ ($lastLoan->tanggal_pinjam)->format('d M Y') }}
+          </p>
+          <a href="{{ route('perpustakaan.pinjaman.detail', $lastLoan->id) }}" route="perpustakaan.pinjaman.detail" class="text-xs text-purple-500 mt-2 inline-block underline hover:text-purple-600">
+            Lihat Detail
+          </a>
+        @else
+          <p class="text-sm text-gray-400">Kamu belum pernah meminjam buku.</p>
+        @endif
+      </div>
+
+      <!-- Belum Dikembalikan -->
+      <div class="p-6 rounded-2xl bg-purple-50 border border-purple-100 shadow">
+        <div class="flex items-center gap-2 text-purple-600 font-medium mb-2">
+          <x-heroicon-o-clock class="w-5 h-5" />
+          Belum Dikembalikan
+        </div>
+        @if ($currentLoan)
+          <h3 class="text-lg font-bold text-pink-800">{{ $currentLoan->book->judul }}</h3>
+          <p class="text-sm text-gray-500 mt-1">
+            Jatuh Tempo: {{ ($currentLoan->tanggal_kembali)->format('d M Y') }}
+          </p>
+          <a href="{{ route('perpustakaan.pinjaman.detail', $currentLoan->id) }}" route="perpustakaan.pinjaman.detail" class="text-xs text-purple-500 mt-2 inline-block underline hover:text-purple-600">
+            Detail Pinjaman
+          </a>
+        @else
+          <p class="text-sm text-gray-400">Tidak ada buku yang sedang dipinjam.</p>
+        @endif
       </div>
     </div>
 
-    <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105 opacity-0 slide" style="background-image: url('images/content1.jpg');">
-      <div class="relative z-10 h-full flex items-center bg-gradient-to-r from-[#4a148c]/60 to-transparent">
-        <div class="ml-10 md:ml-20 max-w-lg space-y-4 text-white">
-          <p class="uppercase font-bold text-sm tracking-widest pink-accent">Rekomendasi Editor</p>
-          <h2 class="text-3xl md:text-4xl font-bold title">Atomic Habits</h2>
-          <a href="#" class="inline-block border-2 border-pink-custom text-white px-6 py-2 rounded-full uppercase font-semibold hover-bg-pink-custom hover-text-dark transition">Pinjam Sekarang</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out scale-105 opacity-0 slide" style="background-image: url('images/content3.jpg');">
-      <div class="relative z-10 h-full flex items-center bg-gradient-to-r from-[#4a148c]/60 to-transparent">
-        <div class="ml-10 md:ml-20 max-w-lg space-y-4 text-white">
-          <p class="uppercase font-bold text-sm tracking-widest pink-accent">Populer Minggu Ini</p>
-          <h2 class="text-3xl md:text-4xl font-bold title">Seni Berpikir Tenang</h2>
-          <a href="#" class="inline-block border-2 border-pink-custom text-white px-6 py-2 rounded-full uppercase font-semibold hover-bg-pink-custom hover-text-dark transition">Baca Sinopsis</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3 z-30">
-      <span class="dot w-4 h-4 rounded-full bg-white/30 cursor-pointer"></span>
-      <span class="dot w-4 h-4 rounded-full bg-white/30 cursor-pointer"></span>
-      <span class="dot w-4 h-4 rounded-full bg-white/30 cursor-pointer"></span>
+    <!-- Navigasi -->
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="{{ route('perpustakaan.pinjaman.riwayat-pinjaman') }}"
+         class="flex items-center gap-2 px-5 py-2 rounded-full bg-pink-100 text-pink-700 font-medium text-sm hover:bg-pink-200 transition">
+        <x-heroicon-o-arrow-path class="w-5 h-5" />
+        Riwayat Pinjaman
+      </a>
+      <a href="{{ route('perpustakaan.books.daftar_buku') }}"
+         class="flex items-center gap-2 px-5 py-2 rounded-full bg-purple-100 text-purple-700 font-medium text-sm hover:bg-purple-200 transition">
+        <x-heroicon-o-book-open class="w-5 h-5" />
+        Lihat Semua Buku
+      </a>
     </div>
   </div>
-</div>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-12">
+</section>
+
+
+    <blockquote class="italic text-center text-purple-400 font-medium text-lg my-10">
+  “Membaca adalah jendela dunia. Tapi meminjam buku di sini bikin jendelanya makin indah.”
+</blockquote>
+
+
+<div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-12">
 
     <!-- Section Rekomendasi -->
-    <section class="relative px-4 md:px-6 lg:px-12 py-6">
+    <section id="daftar-buku"></section>
+    <section  class="relative px-4 md:px-6 lg:px-12 py-6">
         <div class="mb-6">
             <h2 class="text-2xl font-semibold text-[#00BCD4] tracking-wide">Rekomendasi</h2>
             <div class="w-full h-[2px] mt-2 bg-[#00BCD4] opacity-60"></div>
         </div>
-
         <div class="relative group">
             <!-- Mobile Arrows -->
             <button
@@ -156,7 +226,6 @@
                         d="M15 19l-7-7 7-7"/>
                 </svg>
             </button>
-
             <!-- Desktop Arrow -->
             <button
                 onclick="scrollToLeft('rekomendasi-scroll')"
@@ -190,32 +259,26 @@
                             src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}"
                             alt="{{ $buku->judul }}"
                             class="w-full h-56 md:h-64 object-cover rounded-md bg-gray-100"
-                            onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';"></div>
-
+                            onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';">
+                        </div>
                         <div class="p-3 ">
                             <p class="book-title font-semibold text-sm md:text-base truncate w-full"title="{{ $buku->judul }}">{{ $buku->judul }}</p>
                             <div class="flex gap-1 mt-1">
                             {{-- Kategori --}}
-                            <span class="text-[10px] bg-cyan-100 text-cyan-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
+                            <span class="text-[10px] bg-cyan-100 text-blue-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
                                 {{ $buku->kategori->nama ?? '-' }}
                             </span>
-
                             {{-- Genre --}}
-                            @if ($buku->kategori?->nama)
-                                <span class="text-[10px] bg-pink-100 text-pink-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama }}">
-                                    {{ $buku->kategori->genre ?? '-' }}
-                                </span>
-                            @endif
-
+                            <span class="text-[10px] bg-pink-100 text-pink-600 font-medium px-2 py-[2px] rounded-full"
+                                title="{{ $buku->genre ?? '-' }}">
+                                {{ $buku->genre ?? '-' }}
+                            </span>
                             </div>
                             <p class="block text-center mt-2 text-[11px] text-white bg-cyan-400 hover:bg-cyan-500 px-2 py-[2px] rounded-full transition">Lihat Detail</p>
                         </div>
                     </a>
-
                     @endforeach
-
                 </div>
-
                 <!-- Mobile Arrows -->
                 <button
                     onclick="scrollToRight('rekomendasi-scroll')"
@@ -234,7 +297,6 @@
                             d="M9 5l7 7-7 7"/>
                     </svg>
                 </button>
-
                 <!-- Desktop Arrow -->
                 <button
                     onclick="scrollToRight('rekomendasi-scroll')"
@@ -258,13 +320,11 @@
                             d="M9 5l7 7-7 7"/>
                     </svg>
                 </button>
-
             </div>
         </section>
 
         <!-- Section Buku Populer -->
-        <section class="relative">
-            <section class="relative px-4 md:px-6 lg:px-12 py-6">
+        <section class="relative px-4 md:px-6 lg:px-12 py-6">
                 <div class="mb-6">
                     <h2 class="text-2xl font-semibold text-[#66BB6A] tracking-wide">Populer</h2>
                     <div class="w-full h-[2px] mt-2 bg-[#66BB6A] opacity-60"></div>
@@ -308,38 +368,42 @@
                         </svg>
                     </button>
 
-                    <div
-                        class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar"
-                        id="populer-scroll">
-                        @foreach ($populer as $buku)
-                        <a
-                            href="{{ route('perpustakaan.books.show', $buku->id) }}"
-                            class="book-card flex-shrink-0 w-40 md:w-48 snap-start block hover:-translate-y-1 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out">
                             <div
-                                class="bg-white p-1 rounded-lg shadow-sm hover:scale-105 transition-transform duration-300">
-                                <img
-                                    src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}"
-                                    alt="{{ $buku->judul }}"
-                                    class="w-full h-56 md:h-64 object-cover rounded-md bg-gray-100"
-                                    onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';"></div>
+                            class="flex gap-5 overflow-x-auto pb-4 scroll-smooth snap-x snap-mandatory px-2 hide-scrollbar"
+                            id="populer-scroll">
+
+                            @foreach ($populer as $buku)
+                            <a
+                                href="{{ route('perpustakaan.books.show', $buku->id) }}"
+                                class="book-card flex-shrink-0 w-40 md:w-48 snap-start block hover:-translate-y-1 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out">
+
+                                <div class="bg-white p-1 rounded-lg shadow-sm hover:scale-105 transition-transform duration-300">
+                                    <img
+                                        src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}"
+                                        alt="{{ $buku->judul }}"
+                                        class="w-full h-56 md:h-64 object-cover rounded-md bg-gray-100"
+                                        onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';">
+                                </div>
                                 <div class="p-3 ">
-                            <p class="book-title font-semibold text-sm md:text-base truncate w-full"title="{{ $buku->judul }}">{{ $buku->judul }}</p>
-                            <div class="flex gap-1 mt-1">
-                            {{-- Kategori --}}
-                            <span class="text-[10px] bg-cyan-100 text-cyan-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
-                                {{ $buku->kategori->nama ?? '-' }}
-                            </span>
+                                    <p class="book-title font-semibold text-sm md:text-base truncate w-full" title="{{ $buku->judul }}">
+                                        {{ $buku->judul }}
+                                    </p>
+                                    <div class="flex gap-1 mt-1">
+                                        {{-- Kategori --}}
+                                        <span class="text-[10px] bg-cyan-100 text-green-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
+                                            {{ $buku->kategori->nama ?? '-' }}
+                                        </span>
+                                        {{-- Genre --}}
+                                        <span class="text-[10px] bg-pink-100 text-pink-600 font-medium px-2 py-[2px] rounded-full"
+                                            title="{{ $buku->genre ?? '-' }}">
+                                            {{ $buku->genre ?? '-' }}
+                                        </span>
+                                    </div>
 
-                            {{-- Genre --}}
-                            @if ($buku->kategori?->nama)
-                                <span class="text-[10px] bg-pink-100 text-pink-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama }}">
-                                    {{ $buku->kategori->genre ?? '-' }}
-                                </span>
-                            @endif
-
-                            </div>
-                            <p class="block text-center mt-2 text-[11px] text-white bg-green-400 hover:bg-green-500 px-2 py-[2px] rounded-full transition">Lihat Detail</p>
-                        </div>
+                                    <p class="block text-center mt-2 text-[11px] text-white bg-green-400 hover:bg-green-500 px-2 py-[2px] rounded-full transition">
+                                        Lihat Detail
+                                    </p>
+                                </div>
                             </a>
                             @endforeach
                         </div>
@@ -387,13 +451,11 @@
                         </button>
                     </div>
                 </section>
-
                 <!-- Section Buku Baru Rilis -->
-                <section class="relative">
-                    <section class="relative px-4 md:px-6 lg:px-12 py-6">
+                <section class="relative px-4 md:px-6 lg:px-12 py-6">
                         <div class="mb-6">
                             <h2 class="text-2xl font-semibold text-[#a46ede] tracking-wide">Terbaru</h2>
-                            <div class="w-full h-[2px] mt-2 bg-[#a46ede] opacity-60"></div>
+                                <div class="w-full h-[2px] mt-2 bg-[#a46ede] opacity-60"></div>
                         </div>
 
                         <div class="relative group">
@@ -454,16 +516,14 @@
                                         <p class="book-title font-semibold text-sm md:text-base truncate w-full"title="{{ $buku->judul }}">{{ $buku->judul }}</p>
                                         <div class="flex gap-1 mt-1">
                                         {{-- Kategori --}}
-                                        <span class="text-[10px] bg-cyan-100 text-cyan-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
+                                        <span class="text-[10px] bg-purple-100 text-purple-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
                                             {{ $buku->kategori->nama ?? '-' }}
                                         </span>
-
                                         {{-- Genre --}}
-                                        @if ($buku->kategori?->nama)
-                                            <span class="text-[10px] bg-pink-100 text-pink-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama }}">
-                                                {{ $buku->kategori->genre ?? '-' }}
-                                            </span>
-                                        @endif
+                                        <span class="text-[10px] bg-pink-100 text-pink-600 font-medium px-2 py-[2px] rounded-full"
+                                            title="{{ $buku->genre ?? '-' }}">
+                                            {{ $buku->genre ?? '-' }}
+                                        </span>
 
                                         </div>
                                         <p class="block text-center mt-2 text-[11px] text-white bg-purple-400 hover:bg-purple-500 px-2 py-[2px] rounded-full transition">Lihat Detail</p>
@@ -490,7 +550,6 @@
                                             d="M9 5l7 7-7 7"/>
                                     </svg>
                                 </button>
-
                                 <!-- Desktop Arrow -->
                                 <button
                                     onclick="scrollToRight('baru-scroll')"
@@ -515,7 +574,6 @@
                                 </button>
                             </div>
                         </section>
-
                     </div>
 @push('scripts')
 <script>
@@ -543,7 +601,6 @@
             behavior: 'smooth'
         });
     }
-
 
     function updateArrowVisibility() {
         document.querySelectorAll('[class*="overflow-x-auto"]').forEach(container => {
@@ -578,41 +635,43 @@
         window.addEventListener('resize', updateArrowVisibility);
         setTimeout(updateArrowVisibility, 300); // fallback jika konten load lambat
     });
+    // Only initialize slider if elements exist
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
-    let index = 0;
 
-    function showSlide(i) {
-      slides.forEach((slide, idx) => {
-        slide.classList.toggle('opacity-100', idx === i);
-        slide.classList.toggle('opacity-0', idx !== i);
-        slide.classList.toggle('z-20', idx === i);
-        dots[idx].style.backgroundColor = idx === i ? "#E1BEE7" : "rgba(255,255,255,0.3)";
-        dots[idx].classList.toggle('scale-125', idx === i);
-      });
-      index = i;
+    if (slides.length > 0 && dots.length > 0) {
+        let index = 0;
+
+        function showSlide(i) {
+            slides.forEach((slide, idx) => {
+                slide.classList.toggle('opacity-100', idx === i);
+                slide.classList.toggle('opacity-0', idx !== i);
+                slide.classList.toggle('z-20', idx === i);
+                dots[idx].style.backgroundColor = idx === i ? "#E1BEE7" : "rgba(255,255,255,0.3)";
+                dots[idx].classList.toggle('scale-125', idx === i);
+            });
+            index = i;
+        }
+
+        function nextSlide() {
+            let newIndex = (index + 1) % slides.length;
+            showSlide(newIndex);
+        }
+
+        let autoSlide = setInterval(nextSlide, 5000);
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => {
+                clearInterval(autoSlide);
+                showSlide(i);
+                autoSlide = setInterval(nextSlide, 5000);
+            });
+        });
+
+        showSlide(index);
     }
-
-    function nextSlide() {
-      let newIndex = (index + 1) % slides.length;
-      showSlide(newIndex);
-    }
-
-    let autoSlide = setInterval(nextSlide, 5000);
-
-    dots.forEach((dot, i) => {
-      dot.addEventListener('click', () => {
-        clearInterval(autoSlide);
-        showSlide(i);
-        autoSlide = setInterval(nextSlide, 5000);
-      });
-    });
-
-    showSlide(index);
 </script>
 @endpush
-
-
 @endsection
 
 
