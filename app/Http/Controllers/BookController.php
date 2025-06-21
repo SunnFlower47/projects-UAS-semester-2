@@ -28,7 +28,7 @@ class BookController extends Controller
 
     $allKategori = Kategori::all();
 
-    // Karena genre sudah di books, ambil distinct genre dari books, bukan kategori
+
     $allGenre = Book::select('genre')->distinct()->pluck('genre');
 
     return view('perpustakaan.books.daftar_buku', compact('books', 'allKategori', 'allGenre'));

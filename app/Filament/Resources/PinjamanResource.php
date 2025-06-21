@@ -36,7 +36,7 @@ class PinjamanResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->sortable(),
-                TextColumn::make('kode_transaksi')->label('Kode Transaksi')->searchable()->sortable(),
+                TextColumn::make('kode_transaksi')->label('Kode pinjaman')->searchable()->sortable(),
                 TextColumn::make('user.name')->label('Peminjam')->searchable()->sortable(),
                 TextColumn::make('book.judul')->label('Buku')->searchable()->sortable(),
                 TextColumn::make('tanggal_pinjam')->date()->label('Tanggal Pinjam')->sortable(),
