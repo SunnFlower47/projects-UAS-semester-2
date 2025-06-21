@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+   public function up()
 {
     Schema::create('pinjaman', function (Blueprint $table) {
         $table->id();
@@ -19,10 +19,14 @@ return new class extends Migration
         $table->date('tanggal_pinjam')->nullable();
         $table->date('tanggal_kembali')->nullable();
         $table->date('tanggal_kembali_asli')->nullable();
-        $table->enum('status', ['dipinjam', 'dikembalikan', 'terlambat'])->default('dipinjam');
+        $table->enum('status', ['dipinjam', 'dikembalikan', 'terlambat', 'menunggu_validasi'])
+              ->default('dipinjam');
+
         $table->timestamps();
+        $table->softDeletes();
     });
 }
+
 
 
     /**
