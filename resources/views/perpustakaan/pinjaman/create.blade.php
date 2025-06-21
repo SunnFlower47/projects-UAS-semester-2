@@ -81,15 +81,14 @@
 
   {{-- Syarat & Ketentuan --}}
   <div class="mt-12 p-6 bg-lavender-50 rounded-lg text-gray-800 border border-lavender-100">
-    <h4 class="font-semibold mb-4 text-purple-700">Syarat & Ketentuan Peminjaman:</h4>
-    <ul class="list-disc list-inside space-y-2 text-sm">
-      <li>Durasi maksimal peminjaman adalah 7 hari sejak tanggal peminjaman.</li>
-      <li>Peminjam wajib mengembalikan buku tepat waktu untuk menghindari denda.</li>
-      <li>Jika buku rusak atau hilang, peminjam wajib mengganti sesuai ketentuan.</li>
-      <li>Jumlah pinjam disesuaikan dengan stok yang tersedia.</li>
-      <li>Peminjam dapat mengajukan perpanjangan selama tidak ada antrian.</li>
-    </ul>
-  </div>
+  <h4 class="font-semibold mb-4 text-purple-700">Syarat & Ketentuan Peminjaman:</h4>
+  <ul class="list-disc list-inside space-y-2 text-sm leading-relaxed">
+    <li>Durasi maksimal peminjaman adalah <strong>7 hari</strong> sejak tanggal peminjaman.</li>
+    <li>Buku wajib dikembalikan tepat waktu. Keterlambatan akan dikenakan <strong>denda sebesar Rp1.000 per hari</strong>.</li>
+    <li>Jika buku mengalami kerusakan atau hilang, peminjam wajib mengganti dengan buku serupa atau sesuai ketentuan perpustakaan.</li>
+    <li>Peminjaman buku hanya dapat dilakukan jika stok tersedia.</li>
+  </ul>
+</div>
 </div>
   <div class="mb-6 mt-12">
 

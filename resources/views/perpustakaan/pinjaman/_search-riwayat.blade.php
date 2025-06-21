@@ -22,8 +22,12 @@
                 <!-- Status -->
                 <div class="mt-2">
                     <span class="text-[11px] font-medium px-2 py-[2px] rounded-full
-                        {{ $pinjaman->status === 'dipinjam' ? 'bg-yellow-100 text-yellow-700' :
-                           ($pinjaman->status === 'dikembalikan' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700') }}">
+                        {{
+                            $pinjaman->status === 'dipinjam' ? 'bg-yellow-100 text-yellow-700' :
+                            ($pinjaman->status === 'dikembalikan' ? 'bg-green-100 text-green-700' :
+                            ($pinjaman->status === 'menunggu_validasi' ? 'bg-blue-100 text-blue-700' :
+                            'bg-red-100 text-red-700'))
+                        }}">
                         {{ ucfirst($pinjaman->status) }}
                     </span>
                 </div>
