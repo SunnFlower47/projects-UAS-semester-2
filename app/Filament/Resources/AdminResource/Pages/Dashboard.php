@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Filament\Resources\AdminResource\Widgets\StatsOverview;
 use Filament\Pages\page  as BaseDashboard;
 use App\Filament\Resources\AdminResource\Widgets\PinjamanChart;
+use App\Filament\Widgets\TopBooksChart;
 
 class Dashboard extends BaseDashboard
 {
@@ -46,6 +47,7 @@ class Dashboard extends BaseDashboard
         return [
             StatsOverview::class,
             PinjamanChart::class,
+            TopBooksChart::class,
         ];
     }
 

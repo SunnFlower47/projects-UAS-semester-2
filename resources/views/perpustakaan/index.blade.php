@@ -126,15 +126,20 @@ if ($currentLoan && $currentLoan->tanggal_kembali) {
       Selamat Datang, {{ auth()->user()->name }}
     </h2>
 <!-- Notifikasi -->
-    @if ($notif)
-      <div class="mb-6 px-4 py-3 rounded-lg shadow-md
-        {{ $notif['type'] === 'danger' ? 'bg-red-100 text-red-700 border border-red-300' : 'bg-yellow-100 text-yellow-800 border border-yellow-300' }}">
+    @if (!empty($notif) && isset($notif['type'], $notif['message']))
+    <div class="mb-6 px-4 py-3 rounded-lg shadow-md
+        {{ $notif['type'] === 'danger'
+            ? 'bg-red-100 text-red-700 border border-red-300'
+            : 'bg-yellow-100 text-yellow-800 border border-yellow-300' }}">
         <div class="flex items-start gap-2">
-          <x-heroicon-o-exclamation-circle class="w-5 h-5 mt-1" />
-          <div class="text-sm leading-snug">{!! $notif['message'] !!}</div>
+            <x-heroicon-o-exclamation-circle class="w-5 h-5 mt-1" />
+            <div class="text-sm leading-snug">
+                {!! $notif['message'] !!}
+            </div>
         </div>
-      </div>
-    @endif
+    </div>
+@endif
+
     <!-- Info Buku -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <!-- Terakhir Dipinjam -->
@@ -193,9 +198,10 @@ if ($currentLoan && $currentLoan->tanggal_kembali) {
 </section>
 
 
-    <blockquote class="italic text-center text-purple-400 font-medium text-lg my-10">
-  “Membaca adalah jendela dunia. Tapi meminjam buku di sini bikin jendelanya makin indah.”
+    <blockquote class="italic text-center text-purple-500 font-semibold text-lg my-10">
+  “Di balik setiap buku, ada dunia yang menanti. Di sini, kami hanya mempermudah kamu untuk menjangkaunya.”
 </blockquote>
+
 
 
 <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-12">

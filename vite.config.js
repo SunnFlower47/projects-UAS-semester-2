@@ -14,7 +14,7 @@ export default defineConfig({
   },
   server: {
     hmr: {
-      overlay: false, // matikan error overlay saat HMR (hot reload)
+      overlay: false,
     },
   },
 });

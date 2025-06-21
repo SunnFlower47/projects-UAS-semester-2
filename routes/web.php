@@ -6,6 +6,8 @@ use App\Http\Controllers\PinjamanController;
 use App\Http\Controllers\PerpustakaanController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\KategoriController;
+use App\Models\Pinjaman;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/riwayat/search', [PinjamanController::class,'searchRiwayat'])->name('perpustakaan.pinjaman._search-riwayat.search');
     Route::get('/pinjaman/{id}/detail', [PinjamanController::class, 'detail'])->name('perpustakaan.pinjaman.detail');
     Route::get('/books/kategori/{nama}', [KategoriController::class, 'filterByKategori'])->name('kategori.filter');
+    Route::post('/pinjaman/{id}/pengembalian', [PinjamanController::class, 'ajukanPengembalian'])->name('perpustakaan.pinjaman.pengembalian.ajukan');
+
 
 });
 require __DIR__.'/auth.php';

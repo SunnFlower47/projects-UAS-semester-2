@@ -7,18 +7,18 @@
       <div class="flex space-x-3 mt-4 text-xl text-purple-300">
         <a href="#"><i class="fab fa-facebook-f hover:text-purple-500 transition"></i></a>
         <a href="#"><i class="fab fa-twitter hover:text-purple-500 transition"></i></a>
-        <a href="#"><i class="fab fa-instagram hover:text-purple-500 transition"></i></a>
+        <a href="https://www.instagram.com/ridwannnn_____/"><i class="fab fa-instagram hover:text-purple-500 transition"></i></a>
         <a href="#"><i class="fab fa-youtube hover:text-purple-500 transition"></i></a>
       </div>
     </div>
 
-    <!-- Tautan -->
+    <!-- Tautan Cepat -->
     <div>
       <h3 class="text-lg font-semibold mb-3 text-cyan-500">Tautan Cepat</h3>
       <ul class="space-y-2 text-sm text-gray-600">
         <li><a href="{{ route('perpustakaan.index') }}" class="hover:text-purple-500 transition">Beranda</a></li>
-        <li><a href="#" class="hover:text-purple-500 transition">About Us</a></li>
-        <li><a href="#" class="hover:text-purple-500 transition">Contact Us</a></li>
+        <li><a href="{{ route('perpustakaan.aboutus') }}" class="hover:text-purple-500 transition">About Us</a></li>
+        <li><a href="#contactus" class="hover:text-purple-500 transition">Contact Us</a></li>
         <li><a href="{{ route('perpustakaan.books.daftar_buku') }}" class="hover:text-purple-500 transition">Koleksi Buku</a></li>
         <li><a href="{{ route('perpustakaan.pinjaman.riwayat-pinjaman') }}" class="hover:text-purple-500 transition">Riwayat Peminjaman</a></li>
       </ul>

@@ -122,7 +122,10 @@
                 <div class="absolute left-0 mt-2 w-48 bg-purple-100 text-purple-800 rounded-lg shadow-md z-50 ring-1 ring-purple-200 opacity-0 scale-95 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-top">
                 <a href="{{ route('perpustakaan.pinjaman.riwayat-pinjaman') }}"
                     class="block px-4 py-2 hover:bg-purple-200 text-sm transition">Riwayat Peminjaman</a>
-                <a href="#" class="block px-4 py-2 hover:bg-purple-200 text-sm transition">Pengembalian Buku</a>
+                <a href="{{ route('perpustakaan.pinjaman.riwayat-pinjaman', ['status' => 'dipinjam_terlambat']) }}"
+                class="block px-4 py-2 hover:bg-purple-200 text-sm transition">
+                Pengembalian Buku
+                </a>
                 </div>
             </div>
 
@@ -254,7 +257,11 @@
     </div>
 
     <a href="{{ route('perpustakaan.pinjaman.riwayat-pinjaman') }}" class="block py-2 text-lg hover:text-pink-600 transition">Riwayat Peminjaman</a>
-    <a href="#" class="block py-2 text-lg hover:text-pink-600 transition">Pengembalian Buku</a>
+    <a href="{{ route('perpustakaan.pinjaman.riwayat-pinjaman', ['status' => 'dipinjam_terlambat']) }}"
+       class="block py-2 text-lg hover:text-pink-600 transition">
+        Pengembalian Buku
+    </a>
+
     <a href="{{ route('perpustakaan.aboutus') }}" class="block py-2 text-lg hover:text-pink-600 transition">About Us</a>
     <a href="#contactus" class="block py-2 text-lg hover:text-pink-600 transition">Contact Us</a>
   </div>
