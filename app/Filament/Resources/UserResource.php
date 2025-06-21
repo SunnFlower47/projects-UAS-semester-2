@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
-
+    protected static ?string $navigationGroup = 'Manajemen Perpustakaan';
     protected static ?string $navigationIcon = 'heroicon-o-user-group';
 
 

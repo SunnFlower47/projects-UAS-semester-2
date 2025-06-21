@@ -52,6 +52,7 @@ class CreatePinjaman extends CreateRecord
                         'dikembalikan' => 'Dikembalikan',
                         'terlambat' => 'Terlambat',
                     ])
+                    ->searchable()
                     ->default('dipinjam')
                     ->required(),
             ]);

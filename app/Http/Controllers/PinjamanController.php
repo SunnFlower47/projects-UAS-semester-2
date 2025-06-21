@@ -79,9 +79,14 @@ public function riwayat(Request $request)
         ->where('user_id', Auth::id());
 
     // FILTER: Status
-    if ($request->filled('status') && in_array($request->status, ['dipinjam', 'dikembalikan', 'terlambat'])) {
-        $query->where('status', $request->status);
-    }
+    if ($request->filled('status')) {
+        if ($request->status === 'dipinjam_terlambat') {
+            $query->whereIn('status', ['dipinjam', 'terlambat']);
+        } elseif (in_array($request->status, ['dipinjam', 'dikembalikan', 'terlambat', 'menunggu_validasi'])) {
+            $query->where('status', $request->status);
+        }
+}
+
 
     // FILTER: Search query
     if ($request->filled('q')) {
@@ -92,6 +97,16 @@ public function riwayat(Request $request)
               });
         });
     }
+    Pinjaman::where('user_id', Auth::id())
+        ->where('status', 'dipinjam')
+        ->get()
+        ->each(function ($pinjaman) {
+            $jatuhTempo = Carbon::parse($pinjaman->tanggal_kembali)->endOfDay();
+            if (now()->greaterThan($jatuhTempo)) {
+                $pinjaman->update(['status' => 'terlambat']);
+                $pinjaman->hitungDanBuatDenda();
+            }
+        });
 
     $pinjamans = $query->latest()->paginate(12)->withQueryString();
 
@@ -121,7 +136,6 @@ public function searchRiwayat(Request $request)
 }
 
 
-
 public function detail($id)
 {
     $pinjaman = Pinjaman::with(['book.kategori'])->findOrFail($id);
@@ -129,5 +143,19 @@ public function detail($id)
 }
 
 
+public function ajukanPengembalian($id)
+{
+    $pinjaman = Pinjaman::where('id', $id)
+                ->where('user_id', Auth::id())
+                ->whereIn('status', ['dipinjam', 'terlambat'])
+                ->firstOrFail();
+
+    // Tambahkan logika kalau kamu ingin tandai sebagai "menunggu validasi admin"
+    $pinjaman->status = 'menunggu_validasi';
+    $pinjaman->save();
+
+    return redirect()->route('perpustakaan.pinjaman.detail', $pinjaman->id)
+        ->with('success', 'Pengajuan pengembalian berhasil. Silakan datang ke perpustakaan untuk validasi.');
+}
 
 }

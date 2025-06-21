@@ -17,7 +17,6 @@ class Denda extends Model
         'sudah_dibayar',
     ];
 
-    // Relasi ke Pinjaman
     public function pinjaman()
     {
         return $this->belongsTo(Pinjaman::class, 'pinjaman_id');

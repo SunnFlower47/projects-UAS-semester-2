@@ -17,6 +17,7 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use App\Filament\Widgets\TopBooksChart;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -27,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandName('SunLibrary Admin Panel')
+            ->brandName('ReadZone Admin Panel')
             ->topNavigation(true)
             ->renderHook('panels::footer', fn () => view('filament.resources.admin-resource.components.footer'))
             ->colors([
@@ -42,6 +43,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
+                TopBooksChart::class,
             ])
             ->middleware([
                 EncryptCookies::class,

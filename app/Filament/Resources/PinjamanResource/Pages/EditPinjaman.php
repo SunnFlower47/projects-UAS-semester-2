@@ -66,6 +66,7 @@ class EditPinjaman extends EditRecord
                         'dikembalikan' => 'Dikembalikan',
                         'terlambat' => 'Terlambat',
                     ])
+                    ->searchable()
                     ->required(),
             ]);
     }

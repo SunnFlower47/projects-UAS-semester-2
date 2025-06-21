@@ -12,7 +12,7 @@ class PinjamanChart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'bar'; // Bisa kamu ganti ke 'line' kalau mau
+        return 'bar';
     }
 
     protected function getFilters(): ?array
