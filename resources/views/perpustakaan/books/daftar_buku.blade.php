@@ -32,8 +32,7 @@
 }
 
 </style>
-
-<div class="max-w-7xl mx-auto px-1 mt-12 sm:px-3 md:px-5">
+ <section class="max-w-7xl mx-auto px-1 mt-12 sm:px-3 md:px-5">
 
   <h2 class="text-2xl md:text-3xl font-bold text-blue-900 mb-8 text-center">Semua Koleksi Buku</h2>
 
@@ -82,12 +81,12 @@
   @endphp
 
   @if ($books->count() > 0)
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
+    <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       @foreach ($books as $buku)
         @php $randomColor = $colors[array_rand($colors)]; @endphp
 
         <a href="{{ route('perpustakaan.books.show', $buku->id) }}"
-          class="book-card w-40 md:w-48 block hover:-translate-y-1 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out">
+                   class="book-card block hover:-translate-y-1 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out">
 
           <div class="bg-white p-1 rounded-lg shadow-sm hover:scale-105 transition-transform duration-300">
             <img
@@ -123,7 +122,7 @@
       {{ $books->links('vendor.pagination.tailwind-custom') }}
     </div>
   @else
-    <p class="text-center text-gray-600 mt-12">Buku tidak ditemukan, sayang~ 🥺</p>
+    <p class="text-center text-gray-600 mt-12">Buku tidak ditemukan</p>
   @endif
-</div>
+ </section>
 @endsection

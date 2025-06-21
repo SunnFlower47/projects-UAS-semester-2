@@ -200,7 +200,7 @@
 
 
     {{-- <-- navbar --> --}}
-    @include('layouts.partials.nvbar')
+    @include('layouts.partials.navbar')
 
     {{-- <-- main content --> --}}
     <main class="content">

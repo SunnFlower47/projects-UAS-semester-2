@@ -47,12 +47,13 @@ class PerpustakaanController extends Controller
         }
 
         $books = Book::with('kategori')
-            ->where('judul', 'like', '%' . $query . '%')
-            ->orWhere('pengarang', 'like', '%' . $query . '%')
-            ->orWhereHas('kategori', function ($q) use ($query) {
-                $q->where('nama', 'like', '%' . $query . '%');
-            })
-            ->get();
+    ->where('judul', 'like', '%' . $query . '%')
+    ->orWhere('pengarang', 'like', '%' . $query . '%')
+    ->orWhereHas('kategori', function ($q) use ($query) {
+        $q->where('nama', 'like', '%' . $query . '%');
+    })
+    ->paginate(12);
+
 
         return view('perpustakaan.books.search_result', compact('books', 'query'));
     }

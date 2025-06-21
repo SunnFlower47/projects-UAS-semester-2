@@ -148,40 +148,41 @@
 
 
 
-    <div class="grid gap-8 grid-cols-1 md:grid-cols-3">
-      <!-- Card 1 -->
-      <div class="bg-transparent p-6 rounded-2xl shadow-sm border-t-4 border-blue-200 hover:shadow-lg transition-all duration-300">
-        <div class="text-blue-400 text-4xl mb-4">
-          <i class="fas fa-layer-group"></i>
-        </div>
-       <h3 class="text-lg font-semibold text-[#A78BFA] mb-2">Koleksi Beragam</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">
-          Ribuan buku dari berbagai kategori, mulai dari fiksi, ilmiah, hingga referensi kampus.
-        </p>
-      </div>
-
-      <!-- Card 2 -->
-      <div class="bg-transparent p-6 rounded-2xl shadow-sm border-t-4 border-pink-200 hover:shadow-lg transition-all duration-300">
-        <div class="text-pink-400 text-4xl mb-4">
-          <i class="fas fa-calendar-check"></i>
-        </div>
-        <h3 class="text-lg font-semibold text-pink-800 mb-2">Booking Buku Mudah</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">
-          Pesan buku langsung dari aplikasi untuk dibaca di perpustakaan atau dibawa pulang.
-        </p>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="bg-transparent p-6 rounded-2xl shadow-sm border-t-4 border-purple-200 hover:shadow-lg transition-all duration-300">
-        <div class="text-purple-400 text-4xl mb-4">
-          <i class="fas fa-map-marker-alt"></i>
-        </div>
-        <h3 class="text-lg font-semibold text-purple-800 mb-2">Info Rak Buku</h3>
-        <p class="text-sm text-gray-600 leading-relaxed">
-          Lihat lokasi rak dan ketersediaan buku langsung dari aplikasi sebelum kamu datang ke perpus.
-        </p>
-      </div>
+<div class="grid gap-8 grid-cols-1 md:grid-cols-3">
+  <!-- Card 1 -->
+  <div class="bg-transparent p-6 rounded-2xl shadow-sm border-t-4 border-blue-200 hover:shadow-lg transition-all duration-300">
+    <div class="text-blue-400 text-4xl mb-4">
+      <i class="fas fa-layer-group"></i>
     </div>
+    <h3 class="text-lg font-semibold text-[#A78BFA] mb-2">Koleksi Lengkap</h3>
+    <p class="text-sm text-gray-600 leading-relaxed">
+      Akses buku dari berbagai kategori, mulai dari fiksi populer hingga referensi akademik dan profesional.
+    </p>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="bg-transparent p-6 rounded-2xl shadow-sm border-t-4 border-pink-200 hover:shadow-lg transition-all duration-300">
+    <div class="text-pink-400 text-4xl mb-4">
+      <i class="fas fa-calendar-check"></i>
+    </div>
+    <h3 class="text-lg font-semibold text-pink-800 mb-2">Peminjaman Praktis</h3>
+    <p class="text-sm text-gray-600 leading-relaxed">
+      Lakukan pemesanan buku secara online, lalu ambil langsung dengan bukti peminjaman digital.
+    </p>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="bg-transparent p-6 rounded-2xl shadow-sm border-t-4 border-purple-200 hover:shadow-lg transition-all duration-300">
+    <div class="text-purple-400 text-4xl mb-4">
+      <i class="fas fa-map-marker-alt"></i>
+    </div>
+    <h3 class="text-lg font-semibold text-purple-800 mb-2">Navigasi Rak Buku</h3>
+    <p class="text-sm text-gray-600 leading-relaxed">
+      Temukan lokasi rak dan cek ketersediaan buku dengan mudah sebelum datang ke perpustakaan.
+    </p>
+  </div>
+</div>
+
   </div>
 </section>
 @endsection

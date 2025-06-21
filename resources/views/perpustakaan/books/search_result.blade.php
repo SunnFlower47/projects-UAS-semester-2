@@ -1,71 +1,55 @@
 @extends('layouts.perpus')
 
 @section('content')
-<section class="mb-[50px] px-4 max-w-6xl mx-auto pt-24">
+<section class="max-w-7xl mx-auto px-1 mt-12 sm:px-3 md:px-5">
     <div class="flex justify-between items-center mb-[25px]">
-        <h2 class="text-2xl font-bold text-blue-800 m-0">Hasil pencarian: "{{ $query }}"</h2>
+        <h2 class="text-2xl font-bold text-blue-800">Hasil pencarian: "{{ $query }}"</h2>
     </div>
 
     @if($books->isEmpty())
         <div class="flex items-center justify-center min-h-[45vh]">
-        <p class="text-gray-500 italic text-lg text-center">
-            Tidak ada buku yang cocok dengan pencarian "{{ $query }}"
-        </p>
-    </div>
+            <p class="text-gray-500 italic text-lg text-center">
+                Tidak ada buku yang cocok dengan pencarian "{{ $query }}"
+            </p>
+        </div>
     @else
-    <div class="relative">
-        <!-- Panah Kiri -->
-        <button onclick="scrollBookContainer('left')" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-indigo-200 hover:bg-indigo-300 p-2 rounded-full shadow-md transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-    </button>
-
-        <!-- Kontainer Buku -->
-        <div id="bookContainer"
-    class="flex gap-5 px-4 py-3 overflow-x-auto max-w-full scroll-smooth scrollbar-hide whitespace-nowrap snap-x snap-mandatory"
-    style="scroll-behavior: smooth; -webkit-overflow-scrolling: touch;">
-
+        <div class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
             @foreach ($books as $buku)
-                <div class="flex-none w-[160px] bg-pink-100 rounded-lg border-2 border-transparent overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-blue-300 hover:shadow-[0_0_15px_rgba(147,197,253,0.5)]">
-                    <img src="{{ asset('storage/' . $buku->cover) }}" alt="{{ $buku->judul }}" class="w-full h-[230px] object-cover block">
-                    <div class="p-3">
-                        <p class="text-sm text-indigo-800 mb-1 truncate font-medium">{{ $buku->judul }}</p>
-                        <p class="text-xs text-indigo-500 truncate">{{ $buku->kategori->nama ?? '-' }}</p>
+                <a href="{{ route('perpustakaan.books.show', $buku->id) }}"
+                   class="book-card block hover:-translate-y-1 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out">
+                    <div class="bg-white p-1 rounded-lg shadow-sm hover:scale-105 transition-transform duration-300">
+                        <img
+                        src="{{ $buku->cover ? asset('storage/' . $buku->cover) : asset('img/default-cover.jpg') }}"
+                        alt="{{ $buku->judul }}"
+                        class="w-full h-56 md:h-64 object-cover rounded-md bg-gray-100"
+                        onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';">
                     </div>
-                </div>
+
+                    <div class="p-3">
+                        <p class="font-semibold text-sm md:text-base truncate" title="{{ $buku->judul }}">
+                            {{ $buku->judul }}
+                        </p>
+
+                        <div class="flex gap-1 mt-1">
+                            <span class="text-[10px] bg-cyan-100 text-purple-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->kategori->nama ?? '-' }}">
+                                {{ $buku->kategori->nama ?? '-' }}
+                            </span>
+                            <span class="text-[10px] bg-pink-100 text-purple-600 font-medium px-2 py-[2px] rounded-full" title="{{ $buku->genre ?? '-' }}">
+                                {{ $buku->genre ?? '-' }}
+                            </span>
+                        </div>
+
+                        <p class="block text-center mt-2 text-[11px] text-white bg-indigo-500 hover:brightness-110 px-2 py-[2px] rounded-full transition">
+                            Lihat Detail
+                        </p>
+                    </div>
+                </a>
             @endforeach
         </div>
 
-        <!-- Panah Kanan -->
-        <button onclick="scrollBookContainer('right')" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-indigo-200 hover:bg-indigo-300 p-2 rounded-full shadow-md transition">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-            </svg>
-        </button>
-    </div>
+        <div class="mt-8 flex justify-center">
+            {{ $books->appends(['search' => $query])->links('vendor.pagination.tailwind-custom') }}
+        </div>
     @endif
 </section>
 @endsection
-
-@push('scripts')
-<script>
-    function scrollBookContainer(direction) {
-        const container = document.getElementById('bookContainer');
-        const scrollAmount = 200; // Adjust the scroll amount as needed
-
-        if (direction === 'left') {
-            container.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        } else if (direction === 'right') {
-            container.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-    }
-</script>
-@endpush
-

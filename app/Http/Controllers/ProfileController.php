@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -23,29 +21,24 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
    public function update(ProfileUpdateRequest $request): RedirectResponse
 {
     $user = $request->user();
 
-    // Isi data dari validasi (name, email, dll)
+
     $user->fill($request->validated());
 
-    // Cek jika ada file foto di request
     if ($request->hasFile('photo')) {
-        // Hapus foto lama jika ada (optional)
+
         if ($user->photo) {
             Storage::disk('public')->delete($user->photo);
         }
 
-        // Simpan file baru di storage/app/public/profile-photos
         $path = $request->file('photo')->store('profile-photos', 'public');
         $user->photo = $path;
     }
 
-    // Reset verifikasi email jika email diubah
+
     if ($user->isDirty('email')) {
         $user->email_verified_at = null;
     }
@@ -55,9 +48,7 @@ class ProfileController extends Controller
     return Redirect::route('profile.edit')->with('status', 'profile-updated');
 }
 
-    /**
-     * Delete the user's account.
-     */
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [

@@ -102,7 +102,7 @@
 
     <!-- Kembali ke Riwayat -->
     <div class="mt-8">
-      <a href="{{ url()->previous() }}"
+      <a href="{{ route('perpustakaan.pinjaman.riwayat-pinjaman') }}"
          class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-100 to-purple-200 text-purple-700 text-sm font-semibold rounded-full shadow hover:from-purple-200 hover:to-purple-300 transition duration-300">
         <svg xmlns="http://www.w3.org/2000/svg"
              fill="none"
