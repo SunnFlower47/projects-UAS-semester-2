@@ -3,20 +3,9 @@
 @section('title', 'Detail Buku')
 
 @section('content')
-<section>
-
-  <div class="max-w-7xl mx-auto mt-1 mb-12 bg-transparent backdrop-blur-md rounded-2xl p-6 md:p-10 shadow-md border border-pink-100">
-    {{-- Tombol Kembali --}}
-    <div class="mb-8 mt-1">
-      <a href="{{ route('perpustakaan.index') }}"
-        class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-100 to-purple-200 text-purple-700 text-sm font-semibold rounded-full shadow hover:from-purple-200 hover:to-purple-300 transition duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
-          stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-        <span>Kembali</span>
-      </a>
-    </div>
+<section class="py-12">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto mt-4 mb-12 bg-transparent backdrop-blur-md rounded-2xl p-6 md:p-10 shadow-md border border-pink-100">
 
     {{-- Konten Utama --}}
     <div class="flex flex-col md:flex-row gap-8">
@@ -94,7 +83,23 @@
         </tbody>
       </table>
     </div>
+    </div>
 
+<div class="mt-3">
+      <a href="{{ route('perpustakaan.index') }}"
+         class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-100 to-purple-200 text-purple-700 text-sm font-semibold rounded-full shadow hover:from-purple-200 hover:to-purple-300 transition duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             fill="none"
+             viewBox="0 0 24 24"
+             stroke-width="1.5"
+             stroke="currentColor"
+             class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M9 15.75L3.75 10.5 9 5.25M3.75 10.5h13.5A2.25 2.25 0 0120.25 12.75v6" />
+        </svg>
+        Kembali ke beranda
+      </a>
+    </div>
   </div>
 </section>
 @endsection

@@ -10,11 +10,10 @@
     <div class="grid grid-cols-1 gap-6 text-sm">
       @php
           $bukti = [
-              'Kode Transaksi' => $pinjaman->kode_transaksi ?? '-',
+              'Kode penjaman' => $pinjaman->kode_transaksi ?? '-',
               'Nama Peminjam' => $pinjaman->user->name ?? 'Tidak diketahui',
               'Judul Buku' => $pinjaman->book->judul ?? 'Buku tidak ditemukan',
               'Rak Buku' => $pinjaman->book->lokasi_rak ?? 'Tidak diketahui',
-              'Status' => ucfirst($pinjaman->status),
               'Tanggal Pinjam' => \Carbon\Carbon::parse($pinjaman->tanggal_pinjam)->format('d M Y'),
               'Tanggal Kembali' => \Carbon\Carbon::parse($pinjaman->tanggal_kembali)->format('d M Y'),
           ];
@@ -39,7 +38,7 @@
       </a>
       <a href="{{ route('perpustakaan.index') }}"
          class="bg-blue-300 hover:bg-blue-400 text-white px-6 py-2 rounded-lg font-semibold text-sm transition duration-200">
-        Kembali ke Dashboard
+        Kembali ke beranda
       </a>
     </div>
   </div>
