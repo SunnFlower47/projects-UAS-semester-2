@@ -258,7 +258,7 @@
 
     <a href="{{ route('perpustakaan.pinjaman.riwayat-pinjaman') }}" class="block py-2 text-lg hover:text-pink-600 transition">Riwayat Peminjaman</a>
     <a href="{{ route('perpustakaan.pinjaman.riwayat-pinjaman', ['status' => 'dipinjam_terlambat']) }}"
-        class="block px-4 py-2 hover:bg-purple-200 text-sm transition">
+       class="block py-2 text-lg hover:text-pink-600 transition">
         Pengembalian Buku
     </a>
 
