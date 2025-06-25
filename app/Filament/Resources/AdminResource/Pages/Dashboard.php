@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Filament\Resources\AdminResource\Widgets\StatsOverview;
-use Filament\Pages\page  as BaseDashboard;
+use Filament\Pages\Page as BaseDashboard;
 use App\Filament\Resources\AdminResource\Widgets\PinjamanChart;
 use App\Filament\Widgets\TopBooksChart;
 
