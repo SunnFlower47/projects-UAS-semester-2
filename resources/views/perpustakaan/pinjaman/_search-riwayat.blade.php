@@ -6,7 +6,7 @@
             <!-- Cover -->
             <div class="bg-white p-1 rounded-lg shadow-sm hover:scale-105 transition-transform duration-300">
                 <img
-                    src="{{ optional($pinjaman->book)->cover ? asset('storage/' . $pinjaman->book->cover) : asset('images/fallback.png') }}"
+                    src="{{ asset(optional($pinjaman->book)->cover ?? 'images/fallback.png') }}"
                     alt="{{ optional($pinjaman->book)->judul }}"
                     class="w-full h-56 md:h-64 object-cover rounded-md bg-gray-100"
                     onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';">

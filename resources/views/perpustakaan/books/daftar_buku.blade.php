@@ -90,7 +90,7 @@
 
           <div class="bg-white p-1 rounded-lg shadow-sm hover:scale-105 transition-transform duration-300">
             <img
-              src="{{ $buku->cover ? asset('storage/' . $buku->cover) : asset('img/default-cover.jpg') }}"
+              src="{{ $buku->cover ? asset($buku->cover) : asset('img/default-cover.jpg') }}"
               alt="{{ $buku->judul }}"
               class="w-full h-56 md:h-64 object-cover rounded-md bg-gray-100"
               onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';">

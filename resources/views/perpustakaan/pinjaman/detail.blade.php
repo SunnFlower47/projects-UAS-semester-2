@@ -14,8 +14,10 @@
       <div class="flex flex-col lg:flex-row gap-10">
 
         <!-- Cover Buku -->
-        <img src="{{ asset('storage/' . $pinjaman->book->cover) }}" alt="Cover Buku"
-             class="w-48 h-72 object-cover rounded-xl border border-gray-200 shadow-sm min-w-[192px]">
+       <img src="{{ optional($pinjaman->book)->cover ? asset(optional($pinjaman->book)->cover) : asset('images/fallback.png') }}"
+             class="w-48 h-72 object-cover rounded-xl border border-gray-200 shadow-sm min-w-[192px]"
+             onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';">
+
 
         <!-- Informasi Buku -->
         <div class="flex-1 space-y-4">

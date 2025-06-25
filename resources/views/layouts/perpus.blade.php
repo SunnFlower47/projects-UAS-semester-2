@@ -195,10 +195,6 @@
   </div>
   <p class="mt-2 text-sm text-gray-400 animate-pulse">Please wait...</p>
 </div>
-
-
-
-
     {{-- <-- navbar --> --}}
     @include('layouts.partials.navbar')
 
@@ -214,7 +210,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('scripts')
 <script>
-  window.addEventListener('load', () => {
+  function hideLoader() {
     const loader = document.getElementById('global-loader');
     if (loader) {
       loader.style.opacity = '0';
@@ -222,8 +218,19 @@
         loader.style.display = 'none';
       }, 500);
     }
+  }
+
+  // Saat halaman selesai dimuat (normal)
+  window.addEventListener('load', hideLoader);
+
+  // Saat halaman dimuat kembali dari cache (klik tombol back)
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      hideLoader();
+    }
   });
 
+  // Loader saat klik link
   document.querySelectorAll('a[href]').forEach(link => {
     link.addEventListener('click', e => {
       const href = link.getAttribute('href');
@@ -244,9 +251,6 @@
     });
   });
 </script>
-
-
-
 
 </body>
 </html>
