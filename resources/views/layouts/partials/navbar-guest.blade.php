@@ -97,15 +97,13 @@
     </div>
   </div>
 @guest
-  <div class="md:hidden flex items-center gap-2 absolute right-14 top-3">
+  <div class="md:hidden flex items-center gap-1 absolute right-3 top-3">
     <a href="{{ route('login') }}"
-      class="bg-gradient-to-r from-cyan-200 to-cyan-300 hover:from-cyan-300 hover:to-cyan-400
-             text-black font-semibold py-1 px-4 rounded-full shadow-sm transition duration-300 ease-in-out text-sm">
+      class="bg-cyan-200 hover:bg-cyan-300 text-black font-medium text-xs px-3 py-[5px] rounded-full shadow-sm transition">
       Login
     </a>
     <a href="{{ route('register') }}"
-      class="bg-gradient-to-r from-pink-300 to-pink-400 hover:from-pink-400 hover:to-pink-500
-             text-white font-semibold py-1 px-4 rounded-full shadow-md transition duration-300 ease-in-out text-sm">
+      class="bg-pink-400 hover:bg-pink-500 text-white font-medium text-xs px-3 py-[5px] rounded-full shadow-md transition">
       Register
     </a>
   </div>

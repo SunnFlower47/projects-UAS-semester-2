@@ -142,26 +142,40 @@
 
     @stack('scripts')
 <script>
-  window.addEventListener('load', () => {
+  function hideLoader() {
     const loader = document.getElementById('global-loader');
-    // Add a check to ensure loader is not null before accessing style
     if (loader) {
       loader.style.opacity = '0';
       setTimeout(() => {
         loader.style.display = 'none';
       }, 500);
     }
+  }
+
+  // Saat halaman selesai dimuat (normal)
+  window.addEventListener('load', hideLoader);
+
+  // Saat halaman dimuat kembali dari cache (klik tombol back)
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      hideLoader();
+    }
   });
 
+  // Loader saat klik link
   document.querySelectorAll('a[href]').forEach(link => {
     link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      const isDownloadPDF = href && href.includes('/download-pdf');
+
       if (
         link.getAttribute('target') === '_blank' ||
         link.getAttribute('href').startsWith('#') ||
-        link.href.includes('javascript:')
+        link.href.includes('javascript:') ||
+        isDownloadPDF
       ) return;
+
       const loader = document.getElementById('global-loader');
-      // Add a check to ensure loader is not null before accessing style
       if (loader) {
         loader.style.display = 'flex';
         loader.style.opacity = '1';
@@ -169,6 +183,7 @@
     });
   });
 </script>
+
 </body>
 
 </html>

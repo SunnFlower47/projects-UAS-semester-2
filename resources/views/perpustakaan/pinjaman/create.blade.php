@@ -12,9 +12,10 @@
 
   {{-- Informasi Buku --}}
   <div class="flex flex-col md:flex-row gap-6 mb-10">
-    <img src="{{ asset("storage/{$book->cover}") }}" alt="Cover Buku"
-         class="w-40 h-auto rounded-lg border border-lavender-200 shadow-sm self-center"
-         onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';">
+     <img src="{{ $book->cover ? asset($book->cover) : asset('img/default-cover.jpg') }}"
+     alt="Cover Buku"
+     class="w-40 h-auto rounded-lg"
+     onerror="this.onerror=null;this.src='{{ asset('images/fallback.png') }}';">
     <div class="flex-1 space-y-2 text-gray-700 text-sm">
       <h3 class="text-2xl font-semibold text-lavender-800">{{ $book->judul }}</h3>
       <p><span class="font-medium">Penulis:</span> {{ $book->pengarang }}</p>
