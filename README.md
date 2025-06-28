@@ -8,13 +8,14 @@
 
 ## 🌿 Struktur Branch
 
-| Branch  | Keterangan                |
-|---------|---------------------------|
-| main    | Branch utama (stabil)     |
-| ridwan  | Branch kerja Ridwan       |
-| sani    | Branch kerja Sani         |
-| bela    | Branch kerja Bela         |
-| purwa   | Brach Kerja Purwa         |
+| Branch  | Keterangan                                                                                           |
+|---------|------------------------------------------------------------------------------------------------------|
+| main    | Branch utama (stabil)                                                                                |
+| ridwan  | Branch kerja Ridwan (mengerjakan bagian backend dan semua fungsi fitur dari website)                 |
+| sani    | Branch kerja Sani (mengerjakan tampilan website bagian konten dan login/register)                    |
+| bela    | Branch kerja Bela (mengerjakan tampilan website bagian navbar dan halaman welcome/landing page)      |
+| purwa   | Branch kerja Purwa (mengerjakan tampilan website bagian footer dan halaman about us)                 |
+
 
 ## ⚙️ Setup Laravel
 
